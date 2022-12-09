@@ -1,3 +1,29 @@
+# Tech Stack
+
+- [TypeScript](https://www.typescriptlang.org/)
+  - "strongly typed programming language that builds on JavaScript"
+- [React](https://reactjs.org/)
+  - "A JavaScript library for building user interfaces"
+- [Create React App](https://create-react-app.dev/)
+  - For bootstrapping the build process
+- [React Router Dom](https://reactrouter.com/en/main)
+  - For client side routing
+- [Axios](https://axios-http.com/docs/intro)
+  - "promise-based HTTP Client for node.js and the browser"
+- [Tailwind](https://tailwindcss.com/)
+  - "utility-first CSS framework"
+
+# Workflow
+
+- `git checkout -b feature-branch`
+- get the feature working
+- test your feature
+- squash commits if more than one with interactive rebase 
+  - check how many commits to squash with `git log`
+  - `git rebase -i HEAD~[X]` (X number of commits to squash)
+- `git push` the branch up to the remote repo
+- create a PR on Github
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
