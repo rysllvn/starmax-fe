@@ -12,6 +12,8 @@
   - "promise-based HTTP Client for node.js and the browser"
 - [Tailwind](https://tailwindcss.com/)
   - "utility-first CSS framework"
+- [heroicons](https://github.com/tailwindlabs/heroicons#readme)
+  - "Beautiful hand-crafted SVG icons, by the makers of Tailwind CSS"
 
 # Workflow
 
