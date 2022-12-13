@@ -11,6 +11,7 @@ import Layout from './components/Layout';
 import HomePage from './pages/HomePage';
 import TeamPage from './pages/TeamPage';
 import NoMatchPage from './pages/NoMatchPage';
+import SignUpPage from './pages/SignUpPage';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       <Route path="/" element={<Layout />}>
         <Route index element={<HomePage />} />
         <Route path="team" element={<TeamPage />} />
+        <Route path="/signup" element = {<SignUpPage/>} />
         <Route path="*" element={<NoMatchPage />} />
       </Route>
     </Routes>
