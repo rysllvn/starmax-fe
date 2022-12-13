@@ -11,6 +11,9 @@ import Layout from './components/Layout';
 import HomePage from './pages/HomePage';
 import TeamPage from './pages/TeamPage';
 import NoMatchPage from './pages/NoMatchPage';
+import ShippingPage from './pages/ShippingPage';
+import PurchaseHistoryPage from './pages/PurchaseHistoryPage';
+import CartPage from './pages/CartPage';
 
 function App() {
   return (
@@ -18,6 +21,9 @@ function App() {
       <Route path="/" element={<Layout />}>
         <Route index element={<HomePage />} />
         <Route path="team" element={<TeamPage />} />
+        <Route path="/shipping" element={<ShippingPage />} />
+        <Route path="/cart" element={<CartPage />} />
+        <Route path="/purchase_history" element={<PurchaseHistoryPage />} />
         <Route path="*" element={<NoMatchPage />} />
       </Route>
     </Routes>
