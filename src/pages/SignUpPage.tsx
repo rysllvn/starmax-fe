@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import * as Yup from 'yup'
+
 
 export default function SignUpPage() {
 
@@ -9,13 +9,9 @@ export default function SignUpPage() {
     const [password1,setPassword1] = useState<string>("");
     const [password2,setPassword2] = useState<string>("");
 
-    const validationSchema = Yup.object().shape({
-        password1: Yup.string()
-          .required('New Password is required'),
-        password2: Yup.string()
-          .required('Confirm Password is required')
-          .oneOf([Yup.ref('password'), null], 'Passwords does not match'),
-      });
+
+
+
 
     function handleEmail(event:React.ChangeEvent<HTMLInputElement>) {
         setEmail(event.target.value);
@@ -50,7 +46,7 @@ export default function SignUpPage() {
         }
         
         console.log(data);
-        
+         
 
     }
     return (
