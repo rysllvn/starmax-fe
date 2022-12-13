@@ -7,3 +7,10 @@ export type ItemType = {
   imgUrl: string;
   currentPrice: number;
 }
+
+export type cartItemType = {
+  id : string;
+  name : string;
+  qty : number;
+  price : number;
+}
