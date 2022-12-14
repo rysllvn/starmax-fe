@@ -1,15 +1,15 @@
+import { useContext } from 'react';
+
 import { Link, Outlet, useNavigate } from 'react-router-dom';
 
 import { UserIcon } from '@heroicons/react/24/outline';
 import { ShoppingCartIcon } from '@heroicons/react/24/outline';
-import { cartItemType } from '../utilities/types';
+import { CartContext } from '../utilities/Contexts';
 
-type LayoutType = {
-  auth: any;
-  cart: cartItemType[];
-};
-export default function Layout({ auth, cart }: LayoutType) {
+
+export default function Layout() {
   const navigate = useNavigate();
+  const cart = useContext(CartContext);
 
   return (
     <>
