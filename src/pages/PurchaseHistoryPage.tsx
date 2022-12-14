@@ -58,7 +58,7 @@ export default function PurchaseHistoryPage(){
 
     return(
         <>
-            <div className="flex flex-col items-center mt-2">
+            <div className="flex flex-col items-center">
                 <h1 className="text-4xl font-bold">Past Orders</h1>
             </div>
             <div className="ml-3 mr-3 flex flex-row">
@@ -77,16 +77,16 @@ export default function PurchaseHistoryPage(){
                     <option>Total Price</option>
                 </select>
             </div>
-            <div className="flex flex-col items-center">
-            <table className="table-fixed ml-3 mr-3" id="purchaseHistory">
-                <thead className="border-b text-left">
-                    <tr className="text-md">
-                        <th scope="col" className="w-1/4 translate-x-1">Item ID</th>
-                        <th scope="col" className="w-1/4 translate-x-1">Item Name</th>
-                        <th scope="col" className="w-1/4 translate-x-1">Order ID</th>
-                        <th scope="col" className="w-1/12 translate-x-1">QTY</th>
-                        <th scope="col" className="w-1/6 translate-x-1">Price</th>
-                        <th scope="col" className="w-1/6 translate-x-1">Total Price</th>
+            <div className="flex flex-col items-center ml-3 mr-3 mt-2">
+            <table className="min-w-full  " id="purchaseHistory">
+                <thead className="text-left border">
+                    <tr className="text-md cursor-pointer">
+                        <th scope="col" className="w-1/4 border-r">Item ID</th>
+                        <th scope="col" className="w-1/4 border-r">Item Name</th>
+                        <th scope="col" className="w-1/4 border-r">Order ID</th>
+                        <th scope="col" className="w-1/12 border-r">QTY</th>
+                        <th scope="col" className="w-1/12 border-r">Price</th>
+                        <th scope="col" className="w-1/12 border-r">Total Price</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -97,72 +97,4 @@ export default function PurchaseHistoryPage(){
         </div>
         </>
     );
-    
-    /*
-    //CURRENTLY DOES NOT WORK
-    function filterTable(){
-        var input, filter, table, tr, td, i, txtValue;
-        input: String;
-        input = document.getElementById("UserInput");
-        filter = input.value.toUpperCase();
-        table = document.getElementById("purchaseHistory");
-        tr = table.getElementsByTagName("tr");
-
-        for(i = 0; i < tr.length; i++){
-            td = tr[i].getElementsByTagName("td")[2];
-            if(td) {
-                txtValue = td.textContent || td.innerText;
-                if (txtValue.toUpperCase().indexOf(filter) > -1){
-                    tr[i].style.display = "";
-                } else {
-                    tr[i].style.display = "none";
-                }
-            }
-        }
-    } */
-
-    /*
-    //CURENTLY DOES NOT WORK
-    function sortTableByString(n: number){
-        var table, tr, filtering, shouldSwap, dir, i, x, y, filterCount;
-        dir: String;
-        filterCount: Number;
-        filterCount = 0;
-        table = document.getElementById("purchaseHistory");
-        filtering = true;
-        dir = "asc";
-        while (filtering) {
-            filtering = false;
-            rows = table.rows;
-
-            for (i = 1; i < (rows.length -1);i++){
-                shouldSwap = false;
-                x = rows[i].getElementsByTagName("td")[n];
-                y = rows[i+1].getElementsByTagName("td")[n];
-
-                if(dir == "asc"){
-                    if(x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-                        shouldSwap = true;
-                        break;
-                    }
-                } else if (dir = "desc") {
-                    if(x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()){
-                        shouldSwap = true;
-                        break;
-                    }
-                }
-
-            }
-            if(shouldSwap) {
-                rows[i].parentNode.insertBefore(rows[i+1], rows[i]);
-                filtering = true;
-                filterCount++;
-            } else {
-                if (filterCount ==  0 && dir == "asc"){
-                    dir = "desc";
-                    filtering = true;
-                }
-            }
-        }
-    }*/
 }
