@@ -6,7 +6,7 @@ export type ItemType = {
   description: string;
   imgUrl: string;
   currentPrice: number;
-}
+};
 
 export type cartItemType = {
   id : string;
@@ -20,11 +20,7 @@ export type CartItemType = {
   amount: number;
 };
 
-export type AuthType = {
-  token: string;
-};
-
 export type AppStateType = {
-  auth: AuthType | null;
+  authToken: string | null;
   cart: CartItemType[];
 };

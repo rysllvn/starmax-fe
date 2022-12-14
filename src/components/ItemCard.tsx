@@ -8,9 +8,9 @@ export default function ItemCard({ item }: { item: ItemType }) {
   const cart = useContext(CartContext);
 
   const handleAddToCart = () => {
-    const newCart = cart ? [...cart] : [];
+    const newCart = [...cart];
     newCart.push( { itemId: item.id, amount: 1 });
-    dispatch && dispatch({ type: 'addItemToCart', newCart });
+    dispatch({ type: 'updateCart', newCart });
   };
 
   return (
