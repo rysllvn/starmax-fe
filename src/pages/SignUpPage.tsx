@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import { Link } from "react-router-dom";
 
 
 export default function SignUpPage() {
@@ -53,17 +54,19 @@ export default function SignUpPage() {
         <>
             <h1 className="text-3xl">Signup Page</h1>
             <form className="flex flex-col items-center gap-4" onSubmit={handleSubmit}>
-               <label className="px-5" htmlFor ="email"> Email address</label>
-               <input className="border-solid border-2 px-5" type ="text"id ="email"name="email" value={email} onChange={(e) => handleEmail(e)}/>
-               <label className="px-5" htmlFor="given_name"> First Name</label>
-               <input className="border-solid border-2 px-5" type ="text"id ="given_name"name="given_name"value={givenName} onChange={(e) => handleGivenName(e)}/>
-               <label className="px-5" htmlFor="surname"> Last Name</label>
-               <input className="border-solid border-2 px-5" type ="text"id ="surname"name="surname"value={surName} onChange={(e) => handleSurName(e)}/>
-               <label className="px-5" htmlFor="password1"> Password</label>
-               <input className="border-solid border-2 px-5" type ="password"id ="password1"name="password1"value={password1} onChange={(e) => handlePassword1(e)}/>
-               <label className="px-5" htmlFor="password2"> Confirm Password</label>
-               <input className="border-solid border-2 px-5" type ="password"id ="password2"name="password2"value={password2} onChange={(e) => handlePassword2(e)}/>
+               
+               <input className="border-solid border-2 px-5" type ="text"id ="email"name="email" placeholder="Email Address" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" value={email} onChange={(e) => handleEmail(e)}/>
+               
+               <input className="border-solid border-2 px-5" type ="text"id ="given_name"name="given_name" placeholder="First Name" value={givenName} onChange={(e) => handleGivenName(e)}/>
+               
+               <input className="border-solid border-2 px-5" type ="text"id ="surname"name="surname" placeholder="Last Name" value={surName} onChange={(e) => handleSurName(e)}/>
+               
+               <input className="border-solid border-2 px-5" type ="password"id ="password1"name="password1" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
+               title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters" placeholder="Password" value={password1} onChange={(e) => handlePassword1(e)}/>
+               
+               <input className="border-solid border-2 px-5" type ="password"id ="password2"name="password2" placeholder="Confirm Password" value={password2} onChange={(e) => handlePassword2(e)}/>
                <button className="bg-slate-800 rounded-md text-white mt-2 px-5 py-2 ease-out duration-300 hover:scale-125">SIGNUP</button>
+               <Link to={"/login"} className="text-blue-700 underline">Already registered an account?</Link>
 
  
 
