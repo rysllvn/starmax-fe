@@ -1,10 +1,6 @@
-/*
-  Routing structure heavily inspired by basic example recommended 
-  by the React Router Dom Documentation https://reactrouter.com/en/main/start/examples
-  https://github.com/remix-run/react-router/tree/dev/examples
-*/
-
-import { Routes, Route } from 'react-router-dom';
+import { useReducer } from 'react';
+// https://github.com/remix-run/react-router/tree/dev/examples
+import { Routes, Route } from 'react-router-dom'; 
 
 import './App.css';
 import Layout from './components/Layout';
@@ -16,20 +12,26 @@ import ShippingPage from './pages/ShippingPage';
 import PurchaseHistoryPage from './pages/PurchaseHistoryPage';
 import CartPage from './pages/CartPage';
 
+import { DispatchContext } from './utilities/Contexts';
+import { initialState, reducer } from './utilities/AppReducer';
 
 function App() {
+  const [state, dispatch] = useReducer(reducer, initialState);
+
   return (
-    <Routes>
-      <Route path="/" element={<Layout />}>
-        <Route index element={<HomePage />} />
-        <Route path="team" element={<TeamPage />} />
-        <Route path="/signup" element = {<SignUpPage/>} />
-        <Route path="/shipping" element={<ShippingPage />} />
-        <Route path="/cart" element={<CartPage />} />
-        <Route path="/purchase_history" element={<PurchaseHistoryPage />} />
-        <Route path="*" element={<NoMatchPage />} />
-      </Route>
-    </Routes>
+    <DispatchContext.Provider value={dispatch}>
+      <Routes>
+          <Route path="/" element={<Layout cart={state.cart} auth={state.auth} />}>
+            <Route index element={<HomePage />} />
+            <Route path="team" element={<TeamPage />} />
+            <Route path="/signup" element = {<SignUpPage/>} />
+            <Route path="/shipping" element={<ShippingPage />} />
+            <Route path="/cart" element={<CartPage />} />
+            <Route path="/purchase_history" element={<PurchaseHistoryPage />} />
+            <Route path="*" element={<NoMatchPage />} />
+          </Route>
+      </Routes>
+    </DispatchContext.Provider>
   );
 }
 
