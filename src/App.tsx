@@ -12,7 +12,7 @@ import ShippingPage from './pages/ShippingPage';
 import PurchaseHistoryPage from './pages/PurchaseHistoryPage';
 import CartPage from './pages/CartPage';
 
-import { DispatchContext } from './utilities/Contexts';
+import { AuthContext, CartContext, DispatchContext } from './utilities/Contexts';
 import { initialState, reducer } from './utilities/AppReducer';
 
 function App() {
@@ -20,17 +20,21 @@ function App() {
 
   return (
     <DispatchContext.Provider value={dispatch}>
-      <Routes>
-          <Route path="/" element={<Layout cart={state.cart} auth={state.auth} />}>
-            <Route index element={<HomePage />} />
-            <Route path="team" element={<TeamPage />} />
-            <Route path="/signup" element = {<SignUpPage/>} />
-            <Route path="/shipping" element={<ShippingPage />} />
-            <Route path="/cart" element={<CartPage />} />
-            <Route path="/purchase_history" element={<PurchaseHistoryPage />} />
-            <Route path="*" element={<NoMatchPage />} />
-          </Route>
-      </Routes>
+      <CartContext.Provider value={state.cart}>
+        <AuthContext.Provider value={state.auth}>
+          <Routes>
+              <Route path="/" element={<Layout />}>
+                <Route index element={<HomePage />} />
+                <Route path="team" element={<TeamPage />} />
+                <Route path="/signup" element = {<SignUpPage/>} />
+                <Route path="/shipping" element={<ShippingPage />} />
+                <Route path="/cart" element={<CartPage />} />
+                <Route path="/purchase_history" element={<PurchaseHistoryPage />} />
+                <Route path="*" element={<NoMatchPage />} />
+              </Route>
+          </Routes>
+        </AuthContext.Provider>
+      </CartContext.Provider>
     </DispatchContext.Provider>
   );
 }
