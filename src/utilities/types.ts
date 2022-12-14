@@ -9,7 +9,8 @@ export type ItemType = {
 }
 
 export type cartItemType = {
-  id : string;
+  item_id : string;
+  order_id : string;
   name : string;
   qty : number;
   price : number;
