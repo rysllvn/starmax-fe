@@ -13,9 +13,9 @@ export default function Layout() {
   const userData = useContext(AuthContext);
 
   function handleUserClick() {
-    console.log(userData);
+    //console.log(userData);
     if (userData) {
-      //console.log(userData);
+      
       navigate("/profile");
     }
     else{

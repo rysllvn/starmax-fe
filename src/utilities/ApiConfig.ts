@@ -5,7 +5,5 @@ const eCommerce_API = axios.create({
     headers: {
         "Content-Type":"application/json"
     }
-
-
 })
 export default eCommerce_API;

@@ -13,10 +13,6 @@ export default function SignUpPage() {
     const [error,setError] = useState<string>("");
     const navigate = useNavigate();
 
-
-
-
-
     function handleEmail(event:React.ChangeEvent<HTMLInputElement>) {
         setEmail(event.target.value);
 
@@ -59,25 +55,20 @@ export default function SignUpPage() {
         <>
             <h1 className="flex flex-col items-center text-3xl font-bold">Signup Page</h1>
             <div className="mx-60">
-            <form className="bg-emerald-300 flex flex-col items-center gap-5 rounded-lg mx-80 my-8 py-10 px-20" onSubmit={handleSubmit}>
-            
-               <input className="bg-emerald-100 border-solid border-2 px-5 py-2 rounded-lg" type ="text"id ="email"name="email" placeholder="Email Address" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" value={email} onChange={(e) => handleEmail(e)}/>
-               <input className="bg-emerald-100 border-solid border-2 px-5 py-2 rounded-lg" type ="text"id ="given_name"name="given_name" placeholder="First Name" value={givenName} onChange={(e) => handleGivenName(e)}/>
-               <input className="bg-emerald-100 border-solid border-2 px-5 py-2 rounded-lg" type ="text"id ="surname"name="surname" placeholder="Last Name" value={surName} onChange={(e) => handleSurName(e)}/>
-               <input className="bg-emerald-100 border-solid border-2 px-5 py-2 rounded-lg" type ="password"id ="password1"name="password1" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
-               title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters" placeholder="Password" value={password1} onChange={(e) => handlePassword1(e)}/>
-               <input className="bg-emerald-100 border-solid border-2 px-5 py-2 rounded-lg" type ="password"id ="password2"name="password2" placeholder="Confirm Password" value={password2} onChange={(e) => handlePassword2(e)}/>
-               {error ? <p className="text-red-600">{error}</p>:null}
+                <form className="bg-emerald-300 flex flex-col items-center gap-5 rounded-lg mx-80 my-8 py-10 px-20" onSubmit={handleSubmit}>
+                    
+                    <input className="bg-emerald-100 border-solid border-2 px-5 py-2 rounded-lg" type ="text"id ="email"name="email" placeholder="Email Address" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" value={email} onChange={(e) => handleEmail(e)}/>
+                    <input className="bg-emerald-100 border-solid border-2 px-5 py-2 rounded-lg" type ="text"id ="given_name"name="given_name" placeholder="First Name" value={givenName} onChange={(e) => handleGivenName(e)}/>
+                    <input className="bg-emerald-100 border-solid border-2 px-5 py-2 rounded-lg" type ="text"id ="surname"name="surname" placeholder="Last Name" value={surName} onChange={(e) => handleSurName(e)}/>
+                    <input className="bg-emerald-100 border-solid border-2 px-5 py-2 rounded-lg" type ="password"id ="password1"name="password1" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
+                    title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters" placeholder="Password" value={password1} onChange={(e) => handlePassword1(e)}/>
+                    <input className="bg-emerald-100 border-solid border-2 px-5 py-2 rounded-lg" type ="password"id ="password2"name="password2" placeholder="Confirm Password" value={password2} onChange={(e) => handlePassword2(e)}/>
+                    {error ? <p className="text-red-600">{error}</p>:null}
 
-               <button className="bg-slate-800 rounded-md text-white mt-2 px-5 py-2 ease-out duration-300 hover:scale-125">SIGNUP</button>
+                    <button className="bg-slate-800 rounded-md text-white mt-2 px-5 py-2 ease-out duration-300 hover:scale-125">SIGNUP</button>
                
-               <Link to={"/login"} className="text-blue-700 underline">Already registered an account?</Link> 
-
- 
-
-
-
-            </form>
+                    <Link to={"/login"} className="text-blue-700 underline">Already registered an account?</Link> 
+                </form>
             </div>
         </>
     )
