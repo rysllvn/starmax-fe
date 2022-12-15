@@ -18,8 +18,8 @@ export type UserType = {
   givenName: string;
   surname: string;
   role?: string;
-  cardnumber?: string;
-  expDate?: string;
+  cardNumber?: string;
+  expirationDate?: string;
   password?: string;
 };
 

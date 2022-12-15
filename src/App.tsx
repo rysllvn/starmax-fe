@@ -15,6 +15,7 @@ import CartPage from './pages/CartPage';
 import { AuthContext, CartContext, DispatchContext } from './utilities/Contexts';
 import { initialState, reducer } from './utilities/AppReducer';
 import RequireAuth from './components/RequireAuth';
+import LoginPage from './pages/LoginPage';
 
 function App() {
   /***************************************************************
@@ -40,6 +41,7 @@ function App() {
                 <Route index element={<HomePage />} />
                 <Route path="team" element={<TeamPage />} />
                 <Route path="/signup" element = {<SignUpPage/>} />
+                <Route path="/login" element = {<LoginPage/>} />
                 <Route path="/shipping" element={<ShippingPage />} />
                 <Route path="/cart" element={<CartPage />} />
                 <Route
