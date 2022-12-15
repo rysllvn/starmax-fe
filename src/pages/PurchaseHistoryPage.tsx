@@ -1,4 +1,4 @@
-import { MagnifyingGlassIcon, ArrowDownIcon, ArrowUpIcon } from '@heroicons/react/24/outline';
+import { MagnifyingGlassIcon, ArrowDownIcon, ArrowUpIcon, ArrowsUpDownIcon } from '@heroicons/react/24/outline';
 import { useEffect, useState } from "react";
 import { DisplayTableRow } from '../components/DisplayTableRow';
 import { cartItemType } from "../utilities/types";
@@ -67,56 +67,90 @@ const fakeList = [
 export default function PurchaseHistoryPage(){
     //Hooks
     const [filteredPurchaseHistory, setFilteredPurchaseHistory] = useState<cartItemType[]>([]);
-    const [orderFilter, setOrderFilter] = useState<string>("");
-    const [priceFilter, setPriceFilter] = useState<string>("");
+    const [orderDirection, setOrderDirection] = useState<'asc' | 'dsc' | null>(null);
+    const [priceDirection, setPriceDirection] = useState<'asc' | 'dsc' | null>(null);
+    const [totalPriceDirection, setTotalPriceDirection] = useState<'asc' | 'dsc' | null>(null);
     const [filter, setFilter] = useState<string>("");
     const [totalPurchaseHistory, setTotalPurchaseHistory] = useState<cartItemType[]>([]); //NEVER CALL THIS SET AGAIN
     
-
     useEffect(() => {
         setFilteredPurchaseHistory(fakeList); //Will eventually replace this with a list loaded from the database
         setTotalPurchaseHistory(fakeList);
-    }, []);
+        sortOrder(); //hard coding sort HeadOrderId so order is automatically sorted
+    }, [totalPurchaseHistory]);
 
     //Handler
     function filterName(e: React.ChangeEvent<HTMLInputElement>){
+        setPriceDirection(null);
+        setOrderDirection(null);
         setFilter(e.target.value);
         setFilteredPurchaseHistory(totalPurchaseHistory.filter(word => word.name.includes(e.target.value)));
     }
 
     //Handler
-    function sortPrice(e: React.MouseEvent){
-        //List is not filtered
+    //Sorts Purchase History table based on item price
+    function sortPrice(){
+        setTotalPriceDirection(null);
+        setOrderDirection(null);
         if(filter === ""){
             const totalPurchaseHistoryCopy = [...totalPurchaseHistory];
-            if(priceFilter === "" || priceFilter === "desc" ){
-                setPriceFilter("asc");
+            if(priceDirection === null || priceDirection === "dsc" ){
+                setPriceDirection("asc");
                 totalPurchaseHistoryCopy.sort((a,b) => a.purchasePrice - b.purchasePrice);
             } else {
-                setPriceFilter("desc");
+                setPriceDirection("dsc");
                 totalPurchaseHistoryCopy.sort((a,b) => b.purchasePrice - a.purchasePrice);
             }
             setFilteredPurchaseHistory(totalPurchaseHistoryCopy);
         } else {
-            const filteredPurchaseHistoryCopy = [... filteredPurchaseHistory]
-            if(priceFilter === "" || priceFilter === "desc" ){
-                setPriceFilter("asc");
+            const filteredPurchaseHistoryCopy = [...filteredPurchaseHistory]
+            if(priceDirection === null || priceDirection === "dsc" ){
+                setPriceDirection("asc");
                 filteredPurchaseHistoryCopy.sort((a,b) => a.purchasePrice - b.purchasePrice);
             } else {
-                setPriceFilter("desc");
+                setPriceDirection("dsc");
                 filteredPurchaseHistoryCopy.sort((a,b) => b.purchasePrice - a.purchasePrice);
             }
             setFilteredPurchaseHistory(filteredPurchaseHistoryCopy);
         }
-        
     }
 
-    //Probs a way to use one method for both sort features
-    function sortOrder(e: React.MouseEvent){
+      //Handler
+    //Sorts Purchase History table based on Total Price
+    function sortTotalPrice(){
+        setOrderDirection(null);
+        setPriceDirection(null);
         if(filter === ""){
             const totalPurchaseHistoryCopy = [...totalPurchaseHistory];
-            if(orderFilter === "" || orderFilter === "desc" ){
-                setOrderFilter("asc");
+            if(totalPriceDirection === null || totalPriceDirection === "dsc" ){
+                setTotalPriceDirection("asc");
+                totalPurchaseHistoryCopy.sort((a,b) => (a.purchasePrice*a.amount) - (b.purchasePrice*b.amount));
+            } else {
+                setTotalPriceDirection("dsc");
+                totalPurchaseHistoryCopy.sort((a,b) => (b.purchasePrice*b.amount) - (a.purchasePrice*a.amount));
+            }
+            setFilteredPurchaseHistory(totalPurchaseHistoryCopy);
+        } else {
+            const filteredPurchaseHistoryCopy = [...filteredPurchaseHistory]
+            if(totalPriceDirection === null || totalPriceDirection === "dsc" ){
+                setTotalPriceDirection("asc");
+                filteredPurchaseHistoryCopy.sort((a,b) => (a.purchasePrice*a.amount) - (b.purchasePrice*b.amount));
+            } else {
+                setTotalPriceDirection("dsc");
+                filteredPurchaseHistoryCopy.sort((a,b) => (b.purchasePrice*b.amount) - (a.purchasePrice*a.amount));
+            }
+            setFilteredPurchaseHistory(filteredPurchaseHistoryCopy);
+        }
+    }
+
+    //Sorts Purchase History table based on orderId
+    function sortOrder(){
+        setPriceDirection(null);
+        setTotalPriceDirection(null);
+        if(filter === ""){
+            const totalPurchaseHistoryCopy = [...totalPurchaseHistory];
+            if(orderDirection === null || orderDirection === "dsc" ){
+                setOrderDirection("asc");
                 totalPurchaseHistoryCopy.sort((a,b) => {
                     const orderA = a.orderId.toUpperCase();
                     const orderB = b.orderId.toUpperCase();
@@ -125,7 +159,7 @@ export default function PurchaseHistoryPage(){
                     else { return 0}
                 });
             } else {
-                setOrderFilter("desc");
+                setOrderDirection("dsc");
                 totalPurchaseHistoryCopy.sort((a,b) => {
                     const orderA = a.orderId.toUpperCase();
                     const orderB = b.orderId.toUpperCase();
@@ -136,9 +170,9 @@ export default function PurchaseHistoryPage(){
             }
             setFilteredPurchaseHistory(totalPurchaseHistoryCopy);
         } else {
-            const filteredPurchaseHistoryCopy = [... filteredPurchaseHistory]
-            if(orderFilter === "" || orderFilter === "desc" ){
-                setOrderFilter("asc");
+            const filteredPurchaseHistoryCopy = [...filteredPurchaseHistory]
+            if(orderDirection === null || orderDirection === "dsc" ){
+                setOrderDirection("asc");
                 filteredPurchaseHistoryCopy.sort((a,b) => {
                     const orderA = a.orderId.toUpperCase();
                     const orderB = b.orderId.toUpperCase();
@@ -147,7 +181,7 @@ export default function PurchaseHistoryPage(){
                     else { return 0}
                 });
             } else {
-                setOrderFilter("desc");
+                setOrderDirection("dsc");
                 filteredPurchaseHistoryCopy.sort((a,b) => {
                     const orderA = a.orderId.toUpperCase();
                     const orderB = b.orderId.toUpperCase();
@@ -159,7 +193,6 @@ export default function PurchaseHistoryPage(){
             setFilteredPurchaseHistory(filteredPurchaseHistoryCopy);
         }
     }
-
 
     return(
         <>
@@ -176,12 +209,6 @@ export default function PurchaseHistoryPage(){
                         value={filter} onChange={(e) => filterName(e)}
                     />
                 </div>
-                <select className="rounded-sm bg-slate-100 text-sm">
-                    <option>Order ID</option>
-                    <option>Item ID</option>
-                    <option>Item Price</option>
-                    <option>Total Price</option>
-                </select>
             </div>
             <div className="flex flex-col items-center ml-3 mr-3 mt-2">
             <table className="min-w-full" id="filteredPurchaseHistory">
@@ -189,10 +216,37 @@ export default function PurchaseHistoryPage(){
                     <tr className="text-md cursor-pointer">
                         <th scope="col" className="px-2 w-1/4 border-r">Item ID</th>
                         <th scope="col" className="px-2 w-1/4 border-r">Item Name</th>
-                        <th scope="col" className="px-2 w-1/4 border-r" onClick={(e) => sortOrder(e)}>Order ID</th>
-                        <th scope="col" className="px-2 w-1/12 border-r">QTY</th>
-                        <th scope="col" className="px-2 w-1/12 border-r" onClick={(e) => sortPrice(e)} >Price</th>
-                        <th scope="col" className="px-2 w-1/12 border-r">Total Price</th>
+                        <th scope="col" className="px-2 w-1/4 border-r" 
+                            onClick={() => sortOrder()}>Order ID 
+                            {
+                               (orderDirection !== 'asc')
+                               ? (orderDirection !== 'dsc') 
+                                   ? <ArrowsUpDownIcon className='w-4 h-4 translate-y-1 float-right'/>
+                                   : <ArrowDownIcon className='w-4 h-4 translate-y-1 float-right'/>
+                               : <ArrowUpIcon className='w-4 h-4 translate-y-1 float-right'/>
+                            }                   
+                        </th>
+                        <th scope="col" className="px-2 w-1/12 border-r">Quantity</th>
+                        <th scope="col" className="px-2 w-1/12 border-r" 
+                            onClick={() => sortPrice()} >Price 
+                            {
+                               (priceDirection !== 'asc')
+                               ? (priceDirection !== 'dsc') 
+                                   ? <ArrowsUpDownIcon className='w-4 h-4 translate-y-1 float-right'/>
+                                   : <ArrowDownIcon className='w-4 h-4 translate-y-1 float-right'/>
+                               : <ArrowUpIcon className='w-4 h-4 translate-y-1 float-right'/>
+                            }
+                        </th>
+                        <th scope="col" className="px-2 w-1/12 border-r"
+                            onClick={() => sortTotalPrice()} >Total Price
+                            {
+                                (totalPriceDirection !== 'asc')
+                                ? (totalPriceDirection !== 'dsc') 
+                                    ? <ArrowsUpDownIcon className='w-4 h-4 translate-y-1 float-right'/>
+                                    : <ArrowDownIcon className='w-4 h-4 translate-y-1 float-right'/>
+                                : <ArrowUpIcon className='w-4 h-4 translate-y-1 float-right'/>
+                            }
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
