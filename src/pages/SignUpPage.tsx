@@ -48,7 +48,7 @@ export default function SignUpPage() {
             "password2":password2
         }).then((resp) => {
             setError("");
-            console.log(resp);
+            //console.log(resp);
             navigate("/login")
         }).catch((e) => setError(e.response.data.message))
 

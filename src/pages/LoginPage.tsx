@@ -27,7 +27,7 @@ export default function LoginPage() {
             "password":password     
         }).then((resp) => {
             setError("");
-            console.log(resp);
+            //console.log(resp);
             dispatch({type: "setUserData", userData: resp.data})
             navigate("/");
         })
