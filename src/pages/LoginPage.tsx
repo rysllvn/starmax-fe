@@ -28,7 +28,7 @@ export default function LoginPage() {
         }).then((resp) => {
             setError("");
             console.log(resp);
-            dispatch({action: "setUserData", userData: resp.data})
+            dispatch({type: "setUserData", userData: resp.data})
             navigate("/");
         })
           .catch((e) => setError(e.response.data.message));

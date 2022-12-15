@@ -1,17 +1,27 @@
-// import { useContext } from 'react';
+import { useContext } from 'react';
 
 import { Link, Outlet, useNavigate } from 'react-router-dom';
 
 import { UserIcon } from '@heroicons/react/24/outline';
 import { ShoppingCartIcon } from '@heroicons/react/24/outline';
-// import { CartContext } from '../utilities/Contexts';
+import { CartContext,AuthContext } from '../utilities/Contexts';
 
 
 export default function Layout() {
   const navigate = useNavigate();
   // const cart = useContext(CartContext);
+  const userData = useContext(AuthContext);
 
-
+  function handleUserClick() {
+    console.log(userData);
+    if (userData) {
+      //console.log(userData);
+      navigate("/profile");
+    }
+    else{
+      navigate("/login");
+    }
+  }
   return (
     <>
       <div className='bg-emerald-300'>
@@ -20,7 +30,7 @@ export default function Layout() {
           <Link to="/" className="font-bold text-3xl">Mos Espa Marketplace</Link>
           <div className='flex items-center'>
             <UserIcon
-              onClick={() => navigate('/login')}
+              onClick={handleUserClick}
               className='w-14 h-14 mr-4 cursor-pointer'
             />
             <ShoppingCartIcon

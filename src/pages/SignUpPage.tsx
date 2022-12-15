@@ -1,5 +1,6 @@
 import React, { useState } from "react"
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
+import eCommerce_API from "../utilities/ApiConfig";
 
 
 export default function SignUpPage() {
@@ -9,6 +10,8 @@ export default function SignUpPage() {
     const [surName,setSurName] = useState<string>("");
     const [password1,setPassword1] = useState<string>("");
     const [password2,setPassword2] = useState<string>("");
+    const [error,setError] = useState<string>("");
+    const navigate = useNavigate();
 
 
 
@@ -35,18 +38,20 @@ export default function SignUpPage() {
 
     }
 
-    function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
-        const data = {
+        await eCommerce_API.post("/user", {
             "email": email,
             "givenName":givenName,
-            "surName":surName,
+            "surname":surName,
             "password1":password1,
             "password2":password2
-            
-        }
-        
-        console.log(data);
+        }).then((resp) => {
+            setError("");
+            console.log(resp);
+            navigate("/login")
+        }).catch((e) => setError(e.response.data.message))
+
          
 
     }
@@ -62,7 +67,8 @@ export default function SignUpPage() {
                <input className="bg-emerald-100 border-solid border-2 px-5 py-2 rounded-lg" type ="password"id ="password1"name="password1" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
                title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters" placeholder="Password" value={password1} onChange={(e) => handlePassword1(e)}/>
                <input className="bg-emerald-100 border-solid border-2 px-5 py-2 rounded-lg" type ="password"id ="password2"name="password2" placeholder="Confirm Password" value={password2} onChange={(e) => handlePassword2(e)}/>
-               
+               {error ? <p className="text-red-600">{error}</p>:null}
+
                <button className="bg-slate-800 rounded-md text-white mt-2 px-5 py-2 ease-out duration-300 hover:scale-125">SIGNUP</button>
                
                <Link to={"/login"} className="text-blue-700 underline">Already registered an account?</Link> 
