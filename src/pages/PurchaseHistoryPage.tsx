@@ -1,5 +1,5 @@
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
-import { FormEvent, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { DisplayTableRow } from '../components/DisplayTableRow';
 import { cartItemType } from "../utilities/types";
 
@@ -41,6 +41,20 @@ const fakeList = [
         qty: 2,
         price: 2
     },
+    {
+        item_id: '6',
+        order_id: '3',
+        name: 'ship5.4',
+        qty: 2,
+        price: 1
+    },
+    {
+        item_id: '7',
+        order_id: '3',
+        name: 'ship5.41',
+        qty: 2,
+        price: 5
+    },
 ]
 
 export default function PurchaseHistoryPage(){
@@ -57,24 +71,38 @@ export default function PurchaseHistoryPage(){
     }, []);
 
     //Handler
-    function filterData(e: FormEvent){
-        e.preventDefault();
-        console.log(filter);
+    function filterName(e: React.ChangeEvent<HTMLInputElement>){
+        setFilter(e.target.value);
+        setFilteredPurchaseHistory(totalPurchaseHistory.filter(word => word.name.includes(e.target.value)));
     }
 
     //Handler
     function sortPrice(e: React.MouseEvent){
-        const totalPurchaseHistoryCopy = [...totalPurchaseHistory];
-        if(priceFilter === "" || priceFilter === "desc"){
-            setPriceFilter("asc");
-            totalPurchaseHistoryCopy.sort((a,b) => a.price - b.price);
+        //List is not filtered
+        if(filter === ""){
+            const totalPurchaseHistoryCopy = [...totalPurchaseHistory];
+            if(priceFilter === "" || priceFilter === "desc" ){
+                setPriceFilter("asc");
+                totalPurchaseHistoryCopy.sort((a,b) => a.price - b.price);
+            } else {
+                setPriceFilter("desc");
+                totalPurchaseHistoryCopy.sort((a,b) => b.price - a.price);
+            }
+            setFilteredPurchaseHistory(totalPurchaseHistoryCopy);
         } else {
-            setPriceFilter("desc");
-            totalPurchaseHistoryCopy.sort((a,b) => b.price - a.price);
+            const filteredPurchaseHistoryCopy = [... filteredPurchaseHistory]
+            if(priceFilter === "" || priceFilter === "desc" ){
+                setPriceFilter("asc");
+                filteredPurchaseHistoryCopy.sort((a,b) => a.price - b.price);
+            } else {
+                setPriceFilter("desc");
+                filteredPurchaseHistoryCopy.sort((a,b) => b.price - a.price);
+            }
+            setFilteredPurchaseHistory(filteredPurchaseHistoryCopy);
         }
-
-        setFilteredPurchaseHistory(totalPurchaseHistoryCopy); 
+        
     }
+
 
     return(
         <>
@@ -82,15 +110,15 @@ export default function PurchaseHistoryPage(){
                 <h1 className="text-4xl font-bold">Past Orders</h1>
             </div>
             <div className="ml-3 mr-3 flex flex-row">
-                <form className="flex flex-row" onSubmit={(e) => filterData(e)}>
+                <div className="flex flex-row">
                     <label>
                         <MagnifyingGlassIcon className='w-5 h-5 mr-1'/>
                     </label>
                     <input className="bg-slate-100 outline-none placeholder:text-sm placeholder:px-2  text-sm" 
                         placeholder="Filter By Item Name" type="text" id="item_name"
-                        value={filter} onChange={(e) => setFilter(e.target.value)} 
+                        value={filter} onChange={(e) => filterName(e)}
                     />
-                </form>
+                </div>
                 <select className="rounded-sm bg-slate-100 text-sm">
                     <option>Order ID</option>
                     <option>Item ID</option>
