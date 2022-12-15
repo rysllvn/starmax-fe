@@ -1,7 +1,18 @@
+import { useState } from 'react';
+
+
 export default function CartPage(){
+  const [sortedDir, setSortedDir] = useState<'asc' | 'dsc' | null>(null);
     return(
         <div>
-            <h1>Cart Page</h1>
+            <h1 onClick={() => setSortedDir('asc')}>Cart Page</h1>
+            {
+              sortedDir &&
+              (sortedDir === 'asc' ?
+              <div onClick={() => setSortedDir('dsc')}>ASC</div>
+              :
+              <div onClick={() => setSortedDir('asc')}>DESC</div>)
+            }
         </div>
     );
     //Check to see if cart is empty. If it is, load an the empty page content. Otherwise, load the regular page

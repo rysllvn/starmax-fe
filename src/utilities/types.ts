@@ -4,7 +4,7 @@
   State is updated with dispatch which is also provided with a Context
 ******************************************************/
 export type AppStateType = {
-  authToken: string | null;
+  userData: UserType | null;
   cart: { [key: string]: CartType };
 };
 
@@ -13,7 +13,7 @@ export type AppStateType = {
   See the ERD for details 
 *******************************************************************/
 export type UserType = {
-  id: string;
+  token: string;
   email: string;
   givenName: string;
   surname: string;
