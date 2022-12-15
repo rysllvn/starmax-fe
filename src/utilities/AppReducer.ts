@@ -1,7 +1,7 @@
 import { AppStateType } from './types';
 
 export const initialState: AppStateType = {
-  authToken: null,
+  userData: null,
   cart: {},
 };
 
@@ -14,6 +14,11 @@ export function reducer(state: AppStateType, action: { [key: string]: any }) {
         ...state,
         cart: action.newCart,
       }
+    case 'setUserData':
+      return {
+        ...state,
+        userData: action.userData,
+      }  
     default:
       break;
   }
