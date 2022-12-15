@@ -1,16 +1,18 @@
 import { AppStateType } from './types';
 
 export const initialState: AppStateType = {
-  auth: null,
-  cart: [],
+  authToken: null,
+  cart: {},
 };
 
 export function reducer(state: AppStateType, action: { [key: string]: any }) {
   switch (action.type) {
-    case 'addItemToCart':
+    case 'updateCart':
+      // need to send new cart to database also
+      // send array of
       return {
         ...state,
-        cart: action.newCart
+        cart: action.newCart,
       }
     default:
       break;

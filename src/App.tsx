@@ -21,7 +21,7 @@ function App() {
   return (
     <DispatchContext.Provider value={dispatch}>
       <CartContext.Provider value={state.cart}>
-        <AuthContext.Provider value={state.auth}>
+        <AuthContext.Provider value={state.authToken}>
           <Routes>
               <Route path="/" element={<Layout />}>
                 <Route index element={<HomePage />} />

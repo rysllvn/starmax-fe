@@ -47,10 +47,12 @@ type ControlProps = { left: boolean; onClick: Function };
 function Control({ left, onClick }: ControlProps) {
   return (
       <div
-        className='flex flex-col justify-center justify-items-center h-8 w-8 cursor-pointer'
+        className={`flex flex-col justify-center justify-items-center h-full w-8 
+                    hover:bg-slate-700 cursor-pointer bg-slate-800 
+                    ${left ? 'rounded-tl-lg rounded-bl-lg' : 'rounded-tr-lg rounded-br-lg'}`}
         onClick={() => onClick()}>
         {
-          left ? <ChevronLeftIcon /> : <ChevronRightIcon />
+          left ? <ChevronLeftIcon className='text-white'/> : <ChevronRightIcon className='text-white' />
         }
       </div>
   )
@@ -65,7 +67,7 @@ function Item({ item, curr }: ItemProps) {
   return (
     <div
       onClick={handleClick}
-      className='min-w-full transition-all'
+      className='min-w-full transition-all bg-slate-800 p-4'
       style={{
         transform: `translate(-${curr * 100}%)`
       }}

@@ -1,15 +1,16 @@
-import { useContext } from 'react';
+// import { useContext } from 'react';
 
 import { Link, Outlet, useNavigate } from 'react-router-dom';
 
 import { UserIcon } from '@heroicons/react/24/outline';
 import { ShoppingCartIcon } from '@heroicons/react/24/outline';
-import { CartContext } from '../utilities/Contexts';
+// import { CartContext } from '../utilities/Contexts';
 
 
 export default function Layout() {
   const navigate = useNavigate();
-  const cart = useContext(CartContext);
+  // const cart = useContext(CartContext);
+
 
   return (
     <>
@@ -26,7 +27,6 @@ export default function Layout() {
               onClick={() => navigate('/cart')}
               className='cursor-pointer'
             />
-            {cart.length}
           </div>
         </nav>
       </div>

@@ -1,6 +1,6 @@
 import { createContext } from 'react';
-import { AuthType, CartItemType } from './types';
+import { CartType } from './types';
 
 export const DispatchContext = createContext<Function>(() => {});
-export const CartContext = createContext<CartItemType[]>([]);
-export const AuthContext = createContext<AuthType | null>(null);
+export const CartContext = createContext<{ [key: string]: CartType}>({});
+export const AuthContext = createContext<string | null>(null);
