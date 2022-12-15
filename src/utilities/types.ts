@@ -66,9 +66,9 @@ export type CartType = {
 };
 
 export type cartItemType = {
-  item_id : string;
-  order_id : string;
+  itemId : string;
+  orderId : string;
   name : string;
-  qty : number;
-  price : number;
+  amount : number;
+  purchasePrice : number;
 };

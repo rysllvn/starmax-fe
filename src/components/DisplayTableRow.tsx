@@ -6,12 +6,12 @@ export function DisplayTableRow(props : {details: cartItemType}){
     const details = props.details;
     return(
         <tr className="border-b border-l bg-slate-100 text-sm">
-            <td className="border-r px-2 overflow-hidden whitespace-nowrap max-w-md">{details.item_id}</td>
+            <td className="border-r px-2 overflow-hidden whitespace-nowrap max-w-md">{details.itemId}</td>
             <td className="border-r px-2 overflow-hidden whitespace-nowrap max-w-md" title={details.name}>{details.name}</td>
-            <td className="border-r px-2 overflow-hidden whitespace-nowrap max-w-md">{details.order_id}</td>
-            <td className="border-r px-2 overflow-hidden whitespace-nowrap max-w-md">{details.qty}</td>
-            <td className="border-r px-2 overflow-hidden whitespace-nowrap max-w-md">{details.price}</td>
-            <td className="border-r px-2 overflow-hidden whitespace-nowrap max-w-md">{details.price * details.qty} </td>
+            <td className="border-r px-2 overflow-hidden whitespace-nowrap max-w-md">{details.orderId}</td>
+            <td className="border-r px-2 overflow-hidden whitespace-nowrap max-w-md">{details.amount}</td>
+            <td className="border-r px-2 overflow-hidden whitespace-nowrap max-w-md">{details.purchasePrice}</td>
+            <td className="border-r px-2 overflow-hidden whitespace-nowrap max-w-md">{details.purchasePrice * details.amount} </td>
         </tr>
     );
 }

@@ -1,4 +1,4 @@
-import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
+import { MagnifyingGlassIcon, ArrowDownIcon, ArrowUpIcon } from '@heroicons/react/24/outline';
 import { useEffect, useState } from "react";
 import { DisplayTableRow } from '../components/DisplayTableRow';
 import { cartItemType } from "../utilities/types";
@@ -7,62 +7,70 @@ import { cartItemType } from "../utilities/types";
 //ADD DATES TO EACH ITEM. CONSIDER OMITTING THE ITEM_ID
 const fakeList = [
     {
-        item_id: '1',
-        order_id: '1',
+        itemId: '1',
+        orderId: '1',
         name: 'ship1',
-        qty: 5,
-        price: 10
+        amount: 5,
+        purchasePrice: 10
     },
     {
-        item_id: '2',
-        order_id: '1',
+        itemId: '2',
+        orderId: '1',
         name: 'ship2',
-        qty: 2,
-        price: 10
+        amount: 2,
+        purchasePrice: 10
     },
     {
-        item_id: '3',
-        order_id: '2',
+        itemId: '3',
+        orderId: '2',
         name: 'ship3dsadsadavaffrhbgrgsgrhsifuhbvoiwsjolweefqdshfhdssdahuiouifgauyrgfuiwhrgigvuhiwurhgvirhgiuehgiuvhbebhgiuehviuhreivuheiuhviuehviuerghviuerguieg',
-        qty: 2,
-        price: 20
+        amount: 2,
+        purchasePrice: 20
     },
     {
-        item_id: '4',
-        order_id: '3',
+        itemId: '4',
+        orderId: '3',
         name: 'ship4',
-        qty: 2,
-        price: 20
+        amount: 2,
+        purchasePrice: 20
     },
     {
-        item_id: '5',
-        order_id: '3',
+        itemId: '5',
+        orderId: '3',
         name: 'ship5',
-        qty: 2,
-        price: 2
+        amount: 2,
+        purchasePrice: 2
     },
     {
-        item_id: '6',
-        order_id: '3',
+        itemId: '6',
+        orderId: '1',
         name: 'ship5.4',
-        qty: 2,
-        price: 1
+        amount: 2,
+        purchasePrice: 1
     },
     {
-        item_id: '7',
-        order_id: '3',
+        itemId: '7',
+        orderId: '2',
         name: 'ship5.41',
-        qty: 2,
-        price: 5
+        amount: 2,
+        purchasePrice: 5
+    },
+    {
+        itemId: '8',
+        orderId: '1',
+        name: 'ship5.41',
+        amount: 4,
+        purchasePrice: 20
     },
 ]
 
 export default function PurchaseHistoryPage(){
     //Hooks
     const [filteredPurchaseHistory, setFilteredPurchaseHistory] = useState<cartItemType[]>([]);
+    const [orderFilter, setOrderFilter] = useState<string>("");
     const [priceFilter, setPriceFilter] = useState<string>("");
-    const [totalPurchaseHistory, setTotalPurchaseHistory] = useState<cartItemType[]>([]); //NEVER CALL THIS SET AGAIN
     const [filter, setFilter] = useState<string>("");
+    const [totalPurchaseHistory, setTotalPurchaseHistory] = useState<cartItemType[]>([]); //NEVER CALL THIS SET AGAIN
     
 
     useEffect(() => {
@@ -83,24 +91,73 @@ export default function PurchaseHistoryPage(){
             const totalPurchaseHistoryCopy = [...totalPurchaseHistory];
             if(priceFilter === "" || priceFilter === "desc" ){
                 setPriceFilter("asc");
-                totalPurchaseHistoryCopy.sort((a,b) => a.price - b.price);
+                totalPurchaseHistoryCopy.sort((a,b) => a.purchasePrice - b.purchasePrice);
             } else {
                 setPriceFilter("desc");
-                totalPurchaseHistoryCopy.sort((a,b) => b.price - a.price);
+                totalPurchaseHistoryCopy.sort((a,b) => b.purchasePrice - a.purchasePrice);
             }
             setFilteredPurchaseHistory(totalPurchaseHistoryCopy);
         } else {
             const filteredPurchaseHistoryCopy = [... filteredPurchaseHistory]
             if(priceFilter === "" || priceFilter === "desc" ){
                 setPriceFilter("asc");
-                filteredPurchaseHistoryCopy.sort((a,b) => a.price - b.price);
+                filteredPurchaseHistoryCopy.sort((a,b) => a.purchasePrice - b.purchasePrice);
             } else {
                 setPriceFilter("desc");
-                filteredPurchaseHistoryCopy.sort((a,b) => b.price - a.price);
+                filteredPurchaseHistoryCopy.sort((a,b) => b.purchasePrice - a.purchasePrice);
             }
             setFilteredPurchaseHistory(filteredPurchaseHistoryCopy);
         }
         
+    }
+
+    //Probs a way to use one method for both sort features
+    function sortOrder(e: React.MouseEvent){
+        if(filter === ""){
+            const totalPurchaseHistoryCopy = [...totalPurchaseHistory];
+            if(orderFilter === "" || orderFilter === "desc" ){
+                setOrderFilter("asc");
+                totalPurchaseHistoryCopy.sort((a,b) => {
+                    const orderA = a.orderId.toUpperCase();
+                    const orderB = b.orderId.toUpperCase();
+                    if(orderA < orderB){ return -1; } 
+                    else if (orderA > orderB){ return 1; }
+                    else { return 0}
+                });
+            } else {
+                setOrderFilter("desc");
+                totalPurchaseHistoryCopy.sort((a,b) => {
+                    const orderA = a.orderId.toUpperCase();
+                    const orderB = b.orderId.toUpperCase();
+                    if(orderA < orderB){ return 1; } 
+                    else if (orderA > orderB){ return -1; }
+                    else { return 0}
+                });
+            }
+            setFilteredPurchaseHistory(totalPurchaseHistoryCopy);
+        } else {
+            const filteredPurchaseHistoryCopy = [... filteredPurchaseHistory]
+            if(orderFilter === "" || orderFilter === "desc" ){
+                setOrderFilter("asc");
+                filteredPurchaseHistoryCopy.sort((a,b) => {
+                    const orderA = a.orderId.toUpperCase();
+                    const orderB = b.orderId.toUpperCase();
+                    if(orderA < orderB){ return -1; } 
+                    else if (orderA > orderB){ return 1; }
+                    else { return 0}
+                });
+            } else {
+                setOrderFilter("desc");
+                filteredPurchaseHistoryCopy.sort((a,b) => {
+                    const orderA = a.orderId.toUpperCase();
+                    const orderB = b.orderId.toUpperCase();
+                    if(orderA < orderB){ return 1; } 
+                    else if (orderA > orderB){ return -1; }
+                    else { return 0}
+                });
+            }
+            setFilteredPurchaseHistory(filteredPurchaseHistoryCopy);
+        }
     }
 
 
@@ -132,7 +189,7 @@ export default function PurchaseHistoryPage(){
                     <tr className="text-md cursor-pointer">
                         <th scope="col" className="px-2 w-1/4 border-r">Item ID</th>
                         <th scope="col" className="px-2 w-1/4 border-r">Item Name</th>
-                        <th scope="col" className="px-2 w-1/4 border-r">Order ID</th>
+                        <th scope="col" className="px-2 w-1/4 border-r" onClick={(e) => sortOrder(e)}>Order ID</th>
                         <th scope="col" className="px-2 w-1/12 border-r">QTY</th>
                         <th scope="col" className="px-2 w-1/12 border-r" onClick={(e) => sortPrice(e)} >Price</th>
                         <th scope="col" className="px-2 w-1/12 border-r">Total Price</th>
@@ -141,7 +198,7 @@ export default function PurchaseHistoryPage(){
                 <tbody>
                     {filteredPurchaseHistory.map(
                         (details) => {
-                            return( <DisplayTableRow key = {details.item_id} details = {details} /> )
+                            return( <DisplayTableRow key = {details.itemId} details = {details} /> )
                         }
                     )}
                 </tbody>
