@@ -5,6 +5,7 @@ import './App.css';
 import { AuthContext, CartContext, DispatchContext } from './utilities/Contexts';
 import { initialState, reducer } from './utilities/AppReducer';
 import Router from './components/Router';
+import { SET_USER_ACTION_TYPE, USER_DATA_KEY } from './utilities/constants';
 
 function App() {
   /***************************************************************
@@ -13,11 +14,12 @@ function App() {
   ****************************************************************/
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  /** !!!!!!!!! window variables only for development REMOVE LATER!!!!!!!!! */
   useEffect(() => {
-    window.logState = () => console.log(state);
-    window.dispatch = (action: { [key: string]: any }) => dispatch(action);
-  }, [state, dispatch]);
+    const userData = localStorage.getItem(USER_DATA_KEY);
+    if (userData) {
+      dispatch({ type: SET_USER_ACTION_TYPE, userData });
+    }
+  }, [dispatch]);
 
   return (
     <DispatchContext.Provider value={dispatch}>

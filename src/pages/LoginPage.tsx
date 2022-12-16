@@ -1,6 +1,7 @@
 import { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import eCommerce_API from "../utilities/ApiConfig";
+import { SET_USER_ACTION_TYPE, USER_DATA_KEY } from '../utilities/constants';
 import { DispatchContext } from "../utilities/Contexts";
 
 export default function LoginPage() {
@@ -24,9 +25,9 @@ export default function LoginPage() {
             "email": email,
             "password":password     
         }).then((resp) => {
-            setError("");
-            //console.log(resp);
-            dispatch({type: "setUserData", userData: resp.data})
+            const userData = resp.data;
+            localStorage.setItem(USER_DATA_KEY, JSON.stringify(userData));
+            dispatch({type: SET_USER_ACTION_TYPE, userData });
             navigate("/");
         })
           .catch((e) => setError(e.response.data.message));
