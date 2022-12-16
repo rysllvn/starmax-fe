@@ -1,3 +1,4 @@
+import { SET_USER_ACTION_TYPE, UPDATE_CART_ACTION_TYPE } from './constants';
 import { AppStateType } from './types';
 
 export const initialState: AppStateType = {
@@ -5,16 +6,19 @@ export const initialState: AppStateType = {
   cart: {},
 };
 
+/***********************************************************************************************
+// reducer fires when dispatch(action) called
+// the current state and the action that was passed into dispatch is passed into reducer
+// whatever is returned by dispatch will be the new global application state found in App.tsx
+************************************************************************************************/
 export function reducer(state: AppStateType, action: { [key: string]: any }) {
   switch (action.type) {
-    case 'updateCart':
-      // need to send new cart to database also
-      // send array of
+    case UPDATE_CART_ACTION_TYPE:
       return {
         ...state,
         cart: action.newCart,
       }
-    case 'setUserData':
+    case SET_USER_ACTION_TYPE:
       return {
         ...state,
         userData: action.userData,

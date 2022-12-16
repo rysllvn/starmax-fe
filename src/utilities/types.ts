@@ -5,7 +5,6 @@
 ******************************************************/
 export type AppStateType = {
   userData: UserType | null;
-
   cart: { [key: string]: CartType };
 };
 
