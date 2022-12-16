@@ -83,14 +83,13 @@ export default function CartPage(){
   const [totalPriceDirection, setTotalPriceDirection] = useState<'asc' | 'dsc' | null>(null);
   const [filter, setFilter] = useState<string>("");
   const [cartTotalPrice, setCartTotalPrice] = useState<number>(0);
-  const [fillerNum, setFillerNum] = useState<number>(0);
 
   useEffect(() => {
     setTotalCart(fakeList);
     setFilteredTotalCart(fakeList);
     sortTotalPrice();
     setCartTotalPrice(assignCartTotalPrice());
-  }, [totalCart, cartTotalPrice])
+  }, [totalCart])
 
   //Handler
   function filterName(e: React.ChangeEvent<HTMLInputElement>){
@@ -102,12 +101,12 @@ export default function CartPage(){
   //This has problems
   //It reads every item, but fails to update properly. This is most likely due to this constantly adding to it. May need to call this elsewhere (?)
   function assignCartTotalPrice(){
-    totalCart.forEach(item =>
-      setFillerNum((item.purchasePrice * item.amount))
-      //(setFillerNum((item.purchasePrice * item.amount) + fillerNum))
+    let num: number;
+    num = 0;
+    totalCart.forEach(item => 
+      num = num + (item.purchasePrice * item.amount)
     );
-    console.log(fillerNum);
-    return fillerNum;
+    return num;
   }
 
   //Handler
@@ -167,7 +166,7 @@ export default function CartPage(){
   return(
     <>
       <div className="flex flex-col items-center">
-        <h1 className="text-4xl font-bold">Past Orders</h1>
+        <h1 className="text-4xl font-bold">Cart</h1>
       </div>
       <div className="ml-3 mr-3 flex flex-row">
         <div className="flex flex-row">
@@ -222,6 +221,11 @@ export default function CartPage(){
           </tr>
           </tbody>
         </table>
+      </div>
+      <div className="flex flex-col items-center">
+        <button className="m-3 text-3xl text-white font-bold px-5 py-2 bg-slate-800 rounded-md ease-out duration-300 hover:scale-125">
+          Checkout
+        </button>
       </div>
     </>
   );
