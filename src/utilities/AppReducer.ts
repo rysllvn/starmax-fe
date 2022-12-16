@@ -1,3 +1,4 @@
+import { SET_USER_ACTION_TYPE, UPDATE_CART_ACTION_TYPE } from './constants';
 import { AppStateType } from './types';
 
 export const initialState: AppStateType = {
@@ -12,12 +13,12 @@ export const initialState: AppStateType = {
 ************************************************************************************************/
 export function reducer(state: AppStateType, action: { [key: string]: any }) {
   switch (action.type) {
-    case 'updateCart':
+    case UPDATE_CART_ACTION_TYPE:
       return {
         ...state,
         cart: action.newCart,
       }
-    case 'setUserData':
+    case SET_USER_ACTION_TYPE:
       return {
         ...state,
         userData: action.userData,
