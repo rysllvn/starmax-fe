@@ -69,6 +69,7 @@ export type cartItemType = {
   itemId : string;
   orderId : string;
   name : string;
+  imgUrl?: string;
   amount : number;
   purchasePrice : number;
 };

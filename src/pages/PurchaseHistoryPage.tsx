@@ -66,12 +66,12 @@ const fakeList = [
 
 export default function PurchaseHistoryPage(){
     //Hooks
+    const [totalPurchaseHistory, setTotalPurchaseHistory] = useState<cartItemType[]>([]); //NEVER CALL THIS SET AGAIN
     const [filteredPurchaseHistory, setFilteredPurchaseHistory] = useState<cartItemType[]>([]);
     const [orderDirection, setOrderDirection] = useState<'asc' | 'dsc' | null>(null);
     const [priceDirection, setPriceDirection] = useState<'asc' | 'dsc' | null>(null);
     const [totalPriceDirection, setTotalPriceDirection] = useState<'asc' | 'dsc' | null>(null);
     const [filter, setFilter] = useState<string>("");
-    const [totalPurchaseHistory, setTotalPurchaseHistory] = useState<cartItemType[]>([]); //NEVER CALL THIS SET AGAIN
     
     useEffect(() => {
         setFilteredPurchaseHistory(fakeList); //Will eventually replace this with a list loaded from the database
@@ -131,7 +131,7 @@ export default function PurchaseHistoryPage(){
             }
             setFilteredPurchaseHistory(totalPurchaseHistoryCopy);
         } else {
-            const filteredPurchaseHistoryCopy = [...filteredPurchaseHistory]
+            const filteredPurchaseHistoryCopy = [...filteredPurchaseHistory];
             if(totalPriceDirection === null || totalPriceDirection === "dsc" ){
                 setTotalPriceDirection("asc");
                 filteredPurchaseHistoryCopy.sort((a,b) => (a.purchasePrice*a.amount) - (b.purchasePrice*b.amount));
@@ -170,7 +170,7 @@ export default function PurchaseHistoryPage(){
             }
             setFilteredPurchaseHistory(totalPurchaseHistoryCopy);
         } else {
-            const filteredPurchaseHistoryCopy = [...filteredPurchaseHistory]
+            const filteredPurchaseHistoryCopy = [...filteredPurchaseHistory];
             if(orderDirection === null || orderDirection === "dsc" ){
                 setOrderDirection("asc");
                 filteredPurchaseHistoryCopy.sort((a,b) => {
@@ -213,10 +213,10 @@ export default function PurchaseHistoryPage(){
             <div className="flex flex-col items-center ml-3 mr-3 mt-2">
             <table className="min-w-full" id="filteredPurchaseHistory">
                 <thead className="text-left border">
-                    <tr className="text-md cursor-pointer">
+                    <tr className="text-md">
                         <th scope="col" className="px-2 w-1/4 border-r">Item ID</th>
                         <th scope="col" className="px-2 w-1/4 border-r">Item Name</th>
-                        <th scope="col" className="px-2 w-1/4 border-r" 
+                        <th scope="col" className="px-2 w-1/4 border-r cursor-pointer" 
                             onClick={() => sortOrder()}>Order ID 
                             {
                                (orderDirection !== 'asc')
@@ -227,7 +227,7 @@ export default function PurchaseHistoryPage(){
                             }                   
                         </th>
                         <th scope="col" className="px-2 w-1/12 border-r">Quantity</th>
-                        <th scope="col" className="px-2 w-1/12 border-r" 
+                        <th scope="col" className="px-2 w-1/12 border-r cursor-pointer" 
                             onClick={() => sortPrice()} >Price 
                             {
                                (priceDirection !== 'asc')
@@ -237,7 +237,7 @@ export default function PurchaseHistoryPage(){
                                : <ArrowUpIcon className='w-4 h-4 translate-y-1 float-right'/>
                             }
                         </th>
-                        <th scope="col" className="px-2 w-1/12 border-r"
+                        <th scope="col" className="px-2 w-1/12 border-r cursor-pointer"
                             onClick={() => sortTotalPrice()} >Total Price
                             {
                                 (totalPriceDirection !== 'asc')
