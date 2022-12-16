@@ -2,66 +2,15 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { ItemType } from '../utilities/types';
-
-import tiebomer from '../assets/tiebomber.png';
-import xwing from '../assets/xwing.png';
 import FeaturedCarousel from '../components/FeaturedCarousel';
 import HorizontalItemSection from '../components/HorizontalItemSection';
-
-
-const dummyItems = [
-  {
-    id: '1',
-    name: 'Tie Fighter',
-    stock: 8,
-    msrp: 10,
-    description: 'shiny sword',
-    imgUrl: tiebomer,
-    currentPrice: 18
-  },
-  {
-    id: '2',
-    name: 'X-Wing',
-    stock: 8,
-    msrp: 10,
-    description: 'shiny sword',
-    imgUrl: xwing,
-    currentPrice: 18
-  },
-  {
-    id: '3',
-    name: 'Tie-Fighter',
-    stock: 8,
-    msrp: 10,
-    description: 'sdf',
-    imgUrl: tiebomer,
-    currentPrice: 18
-  },
-  {
-    id: '4',
-    name: 'X-Wing',
-    stock: 8,
-    msrp: 10,
-    description: 'shiny sword',
-    imgUrl: xwing,
-    currentPrice: 18
-  },
-  {
-    id: '6',
-    name: 'Tie Fighter',
-    stock: 8,
-    msrp: 10,
-    description: 'shiny sword',
-    imgUrl: tiebomer,
-    currentPrice: 18
-  },
-];
+import { fakeItemArray } from '../utilities/mock_data';
 
 export default function HomePage() {
     const [featuredItems, setFeaturedItems] = useState<ItemType[]>([]);
 
     useEffect(() => {
-      setFeaturedItems(dummyItems);
+      setFeaturedItems(fakeItemArray);
     }, []);
 
     return (
