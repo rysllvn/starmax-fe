@@ -10,7 +10,7 @@ export default function CartCards(props : {details: cartItemType}){
             </div>
             <div className="w-full bg-slate-300 grid grid-cols-4 grid-rows-6">
                 <div className="col-span-4 row-span-2 flex items-center bg-blue-100">
-                    <h1 className="text-lg font-bold break-words px-2 cursor-default">{details.name}</h1>
+                    <h1 className="text-lg font-bold break-all px-2 cursor-default">{details.name}</h1>
                 </div>
                 <div className="col-span-2 flex items-center bg-blue-200">
                     <h1 className="font-bold truncate px-2 cursor-default">ID: {details.itemId}</h1>
