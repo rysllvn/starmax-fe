@@ -1,4 +1,4 @@
-import { ArrowDownIcon, ArrowsUpDownIcon, ArrowUpIcon, MagnifyingGlassIcon } from '@heroicons/react/24/outline';
+import { ArrowDownIcon, ArrowsUpDownIcon, ArrowUpIcon, MagnifyingGlassIcon, XMarkIcon, PlusIcon, MinusIcon } from '@heroicons/react/24/outline';
 import { useEffect, useState } from 'react';
 import tiebomer from '../assets/tiebomber.png';
 import xwing from '../assets/xwing.png';
@@ -85,8 +85,8 @@ export default function CartPage(){
   const [cartTotalPrice, setCartTotalPrice] = useState<number>(0);
 
   useEffect(() => {
-    setTotalCart(fakeList);
-    setFilteredTotalCart(fakeList);
+    setTotalCart(fakeList); //WILL NEED TO BE UPDATED WHEN READING FROM THE BACKEND
+    setFilteredTotalCart(fakeList); //WILL NEED TO BE UPDATED WHEN READING FROM THE BACKEND
     sortTotalPrice();
     setCartTotalPrice(assignCartTotalPrice());
   }, [totalCart])
@@ -223,8 +223,8 @@ export default function CartPage(){
         </table>
       </div>
       <div className="flex flex-col items-center">
-        <button className="m-3 text-3xl text-white font-bold px-5 py-2 bg-slate-800 rounded-md ease-out duration-300 hover:scale-125">
-          Checkout
+        <button className="m-3 text-3xl text-white font-bold px-5 py-2 bg-slate-800 rounded-md 
+          ease-out duration-300 hover:scale-125" > Checkout
         </button>
       </div>
     </>

@@ -74,9 +74,9 @@ export default function PurchaseHistoryPage(){
     const [filter, setFilter] = useState<string>("");
     
     useEffect(() => {
-        setFilteredPurchaseHistory(fakeList); //Will eventually replace this with a list loaded from the database
-        setTotalPurchaseHistory(fakeList);
-        sortOrder(); //hard coding sort HeadOrderId so order is automatically sorted
+        setFilteredPurchaseHistory(fakeList); //WILL NEED TO BE UPDATED WHEN READING FROM THE BACKEND
+        setTotalPurchaseHistory(fakeList); //WILL NEED TO BE UPDATED WHEN READING FROM THE BACKEND
+        sortOrder();
     }, [totalPurchaseHistory]);
 
     //Handler
