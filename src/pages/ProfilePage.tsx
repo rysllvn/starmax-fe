@@ -96,8 +96,8 @@ async function handleSubmitUser(event: React.FormEvent<HTMLFormElement>) {
         "email": email,
         "givenName":givenName,
         "surname":surname,
-        "password1":cardNumber,
-        "password2":expirationDate
+        "cardNumber":cardNumber,
+        "expirationDate":expirationDate
     }).then((resp) => {
         console.log(resp);
         //navigate("/login")
