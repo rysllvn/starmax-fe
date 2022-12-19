@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import tiebomer from '../assets/tiebomber.png';
 import xwing from '../assets/xwing.png';
-import CartCards from "../components/CartCards";
+import CartCard from "../components/CartCard";
 import { cartItemType } from "../utilities/types";
 
 const fakeList = [
@@ -70,25 +70,57 @@ const fakeList = [
         purchasePrice: 20
     },
   ]
-  
 
 export default function CheckoutConfirmationPage(){
     const [cartCards, setCartCards] = useState<cartItemType[]>([]);
-    const [filteredCards, setFilteredCards] = useState<cartItemType[]>([]);
 
     useEffect(() => {
         setCartCards(fakeList); //WILL NEED TO BE UPDATED WHEN READING FROM THE BACKEND
-        setFilteredCards(fakeList); //WILL NEED TO BE UPDATED WHEN READING FROM THE BACKEND
-      }, [cartCards])
 
+      }, [])
+
+      //Updates cart total price
+      function assignCartTotalPrice(){
+        let num: number;
+        num = 0;
+        cartCards.forEach(item => 
+          num = num + (item.purchasePrice * item.amount)
+        );
+        return num;
+      }
+
+      //Removes an item from the cart
+      function handleDelete(id : string){
+        const copyCartCards = cartCards.filter((card) => card.itemId !== id);
+        setCartCards(copyCartCards);
+      }
+
+      //Updates the amount of an item in the cart
+      function handleAmountChange(id: string, newAmount : number){
+
+        if(newAmount === 0) {
+            handleDelete(id);
+            return;
+        }
+        const copyCartCards = [...cartCards];
+        const index = copyCartCards.findIndex(cards => (cards.itemId == id));
+        copyCartCards[index].amount = newAmount;
+        setCartCards(copyCartCards);
+      }
+    
     return(
         <div>
-            <h1 className="flex flex-col items-center font-bold text-5xl">CARD TEST PAGE</h1>
-                {filteredCards.map(
-                    (details) => {
-                        return( <CartCards key = {details.itemId} details = {details} /> )
-                    }
-                )}
+            <div className="flex flex-col items-center">
+                <h1 className="font-bold text-5xl">Cart</h1>
+                <h1 className="font-bold text-4xl bg-slate-200 border-2 border-slate-500 rounded-md px-4 py-2">Total Price: {assignCartTotalPrice()}</h1>
+                <h1>ADD BUTTON FOR CHECKOUT HERE</h1>
+            </div>
+            {cartCards.map(
+                (details) => {
+                    return( <CartCard key = {details.itemId} details = {details}  onDelete = {handleDelete} onAmountChange = {handleAmountChange} />)
+                }
+                    
+            )}
         </div>
     );
 }
