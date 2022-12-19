@@ -10,6 +10,7 @@ import CartPage from '../pages/CartPage';
 import RequireAuth from './RequireAuth';
 import LoginPage from '../pages/LoginPage';
 import ItemDetailPage from '../pages/ItemDetailPage';
+import ProfilePage from '../pages/ProfilePage';
 
 export default function Router() {
   return (
@@ -25,6 +26,7 @@ export default function Router() {
         <Route element={<RequireAuth role="User" />} >
           <Route path="/purchase-history" element={<PurchaseHistoryPage />} />
           <Route path="/shipping" element={<ShippingPage />} />
+          <Route path="/profile" element={<ProfilePage />} />
         </Route>
 
         <Route element={<RequireAuth role="Admin" />} >

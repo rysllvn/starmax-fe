@@ -28,18 +28,7 @@ function App() {
     <DispatchContext.Provider value={dispatch}>
       <CartContext.Provider value={state.cart}>
         <AuthContext.Provider value={state.userData}>
-          <Routes>
-              <Route path="/" element={<Layout />}>
-                <Route index element={<HomePage />} />
-                <Route path="/signup" element = {<SignUpPage/>} />
-                <Route path="/login" element = {<LoginPage/>} />
-                <Route path="/profile" element = {<ProfilePage/>} />
-                <Route path="/shipping" element={<ShippingPage />} />
-                <Route path="/cart" element={<CartPage />} />
-                <Route path="/purchase_history" element={<PurchaseHistoryPage />} />
-                <Route path="*" element={<NoMatchPage />} />
-              </Route>
-          </Routes>
+          <Router/>
         </AuthContext.Provider>
       </CartContext.Provider>
     </DispatchContext.Provider>

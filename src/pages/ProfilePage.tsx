@@ -42,6 +42,7 @@ function handleZip(event:React.ChangeEvent<HTMLInputElement>) {
 
 async function handleSubmitAddress(event:React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    console.log(street,city,state,zip);
     await eCommerce_API.post("/addresses", {
         "street": street,
         "city":city,
@@ -64,9 +65,8 @@ const [changeSurnameMode, setChangeSurnameMode] = useState(false);
 const [email,setEmail] = useState<string>(userData?.email  ? userData.email : (""));
 const [changeEmailMode, setChangeEmailMode] = useState(false);
 const [cardNumber,setCardNumber] = useState<string>("");
-const [changeCardNumberMode, setChangeCardNumberMode] = useState(false);
-const [expirationDate,setExpirationDate] = useState<string>("");
-const [changeExpirationDateMode, setChangeExpirationDateMode] = useState(new Date);
+const [expirationDate,setExpirationDate] = useState<Date | null|string>(null);
+
 
 
 function handleCardNumber(event:React.ChangeEvent<HTMLInputElement>) {
@@ -87,17 +87,22 @@ function handleEmail(event:React.ChangeEvent<HTMLInputElement>) {
 
 }
 
+function handleDateChange(event:React.ChangeEvent<HTMLInputElement>) {
+    setExpirationDate((event.target.value));
+    console.log(event.target.value);
+}
 
 
 
 async function handleSubmitUser(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    await eCommerce_API.patch("/user", {
-        "email": email,
-        "givenName":givenName,
-        "surname":surname,
-        "cardNumber":cardNumber,
-        "expirationDate":expirationDate
+    console.log(email,givenName,surname,cardNumber,expirationDate);
+    await eCommerce_API.put("/user", {
+        "newEmail": email,
+        "newGivenName":givenName,
+        "newSurname":surname,
+        "newCardNumber":cardNumber,
+        "newExpirationDate":expirationDate
     }).then((resp) => {
         console.log(resp);
         //navigate("/login")
@@ -222,7 +227,7 @@ return (
             {
                 changeEmailMode 
                 ? 
-                <input className="flex " type="text" onChange={(e) => handleEmail(e) } value={email}/> 
+                <input className="flex " type="text" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" onChange={(e) => handleEmail(e) } value={email}/> 
                 : 
                 <div onClick={()=> setChangeEmailMode(true) }>{userData?.email}</div>
             }
@@ -234,7 +239,7 @@ return (
         {/* Exp. Date Changing  */} 
             <h2 className="flex text-xl font-bold">Expiration Date: </h2>
             {
-                <input type="month" onClick={()=> setChangeExpirationDateMode(new Date) }>{userData?.expirationDate}</input>
+                <input type="month" onChange={handleDateChange} value = {userData?.expirationDate}></input>
             }
       <button className="bg-slate-800 rounded-md text-white mt-2 px-5 py-2 ease-out duration-300 hover:scale-125">Update Info</button>
     </form>
