@@ -1,5 +1,6 @@
 import { cartItemType } from "../utilities/types";
 
+//THIS IS NO LONGER USED, SO CONSIDER REMOVING THIS COMPONENT AT SOME POINT
 export default function DisplayCartRow(props : {details: cartItemType}){
     const details = props.details;
     return(
