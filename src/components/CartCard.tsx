@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { cartItemType } from "../utilities/types";
 
 //Currently will resize if text is too long. Find out some way to prevent this
