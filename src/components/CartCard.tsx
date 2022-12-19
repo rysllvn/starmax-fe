@@ -12,11 +12,22 @@ export default function CartCard(props : {details: cartItemType, onDelete : Func
         onAmountChange(details.itemId, newAmount);
     }
 
+    //THIS CURRENTLY HAS ISSUES. Can't backspace to a single digit
+    function handleAmountChange(e : React.ChangeEvent<HTMLInputElement>){
+        e.preventDefault();
+        const newAmount = Number(e.target.value);
+        console.log(newAmount);
+        if(newAmount > 0){
+            onAmountChange(details.itemId, newAmount);
+        }
+        
+    }
+
     return(
         
         <div className="flex flex-row mt-10 mb-10 ml-28 mr-28 drop-shadow-xl outline outline-slate-500 rounded-md">
             <div className="flex flex-none h-48 w-48 bg-slate-900 border-r-2 border-r-slate-500">
-                <img src={details.imgUrl}></img>
+                <img src={details.imgUrl} alt="Veryusefultext"></img>
             </div>
             <div className="w-full bg-slate-100 grid grid-cols-4 grid-rows-6">
                 <div className="col-span-4 row-span-2 flex items-center border-b-2">
@@ -40,6 +51,10 @@ export default function CartCard(props : {details: cartItemType, onDelete : Func
                         <option value="9">9</option>
                         <option value="10">10</option>
                     </select>
+                </div>
+
+                <div className="row-start-6 col-start-2 mr-1">
+                    <input className="px-1" placeholder="Amount" value={details.amount} pattern="^[0-9]*$" title="Invalid Amount" onChange={(e) => handleAmountChange(e)}></input>
                 </div>
                 
                 <div className="row-start-3 col-start-3 row-span-3 col-span-2 px-2 py-2 flex-wrap border-b-2 border-l-2 rounded-bl-lg">
