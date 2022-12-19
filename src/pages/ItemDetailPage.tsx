@@ -1,21 +1,27 @@
 import { useContext, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
+import eCommerce_API from '../utilities/ApiConfig';
 import { UPDATE_CART_ACTION_TYPE } from '../utilities/constants';
 import { CartContext, DispatchContext } from '../utilities/Contexts';
 
-import { fakeItemArray } from '../utilities/mock_data';
 import { ItemType } from '../utilities/types';
-
+import tieBomber from '../assets/tiebomber.png';
 
 
 export default function ItemDetailPage() {
-  const [item, setItem] = useState<ItemType | null>();
+  const navigate = useNavigate();
   const params = useParams();
+  const [item, setItem] = useState<ItemType | null>();
   const dispatch = useContext(DispatchContext);
   const cart = useContext(CartContext);
 
   useEffect(() => {
-    setItem(fakeItemArray.find((item) => item.id === params.itemId));
+    eCommerce_API.get("/items/all",{
+    }).then((resp) => {
+      const items: ItemType[] = resp.data;
+      const thisItem = items.find(item => item.id === params.itemId);
+      setItem(thisItem);
+    });
   }, [params])
 
   function handleAddToCart() {
@@ -26,6 +32,7 @@ export default function ItemDetailPage() {
       newCart[item.id] = { itemId: item.id, amount: 1};
     }
     dispatch({ type: UPDATE_CART_ACTION_TYPE, newCart });
+    navigate('/item-added-to-cart', { state: { itemId: item?.id } });
   }
 
   return (
@@ -35,20 +42,25 @@ export default function ItemDetailPage() {
         <div>
           <h1>{item.name}</h1>
           <div>{item.description}</div>
-          <img
-            src={item.imgUrl}
-            alt={item.description}
-          />
+          <div className='w-96'>
+            <img
+              src={item.img_url ? item.img_url : tieBomber }
+              alt={`${item.name} ${item.description}`}
+            />
+          </div>
+          
           <div>MSRP: {item.msrp}</div>
-          <div>Current Price: {item.currentPrice}</div>
-          <button onClick={handleAddToCart}>Add to Cart</button>
-          <button>Add to Cart and Checkout</button>
+          <div>Current Price: {item.current_price}</div>
+          <button
+            className='bg-slate-200 p-4 rounded'
+            onClick={handleAddToCart}
+          >
+            Add to Cart
+          </button>
         </div>
-        
       :
         <div>Loading...</div>
       }
-      
     </>
   )
 }

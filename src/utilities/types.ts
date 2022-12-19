@@ -40,7 +40,9 @@ export type ItemType = {
   description?: string;
   imgUrl?: string;
   currentPrice?: number;
+  current_price?: number;
   type?: string;
+  img_url?: string;
 };
 
 export type OrderType = {

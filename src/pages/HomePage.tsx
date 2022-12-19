@@ -4,16 +4,24 @@ import { Link } from 'react-router-dom';
 import { ItemType } from '../utilities/types';
 import FeaturedCarousel from '../components/FeaturedCarousel';
 import HorizontalItemSection from '../components/HorizontalItemSection';
-import { fakeItemArray } from '../utilities/mock_data';
+import eCommerce_API from '../utilities/ApiConfig';
 
 export default function HomePage() {
     const [featuredItems, setFeaturedItems] = useState<ItemType[]>([]);
 
     useEffect(() => {
-      setFeaturedItems(fakeItemArray);
+      eCommerce_API.get("/items/all",{
+      }).then((resp) => {
+        const items: ItemType[] = resp.data;
+        setFeaturedItems(items);
+      });
     }, []);
 
     return (
+      <>
+
+      {
+        featuredItems ?
         <>
           <section className='flex justify-center mb-10'>
             <div className='min-w-[50%] flex flex-col justify-between min-h-full'>
@@ -29,8 +37,12 @@ export default function HomePage() {
             <FeaturedCarousel items={featuredItems} />
           </section>
 
-          <HorizontalItemSection items={featuredItems} bgColor="bg-emerald-200" />
-          <HorizontalItemSection items={featuredItems} bgColor="bg-sky-200" />
+          <HorizontalItemSection items={featuredItems.slice(0, 4)} bgColor="bg-emerald-200" />
+          <HorizontalItemSection items={featuredItems.slice(4,8)} bgColor="bg-sky-200" />
         </>
+        :
+        <div className='text-xl'>Loading...</div>
+      }
+      </>
     )
 }

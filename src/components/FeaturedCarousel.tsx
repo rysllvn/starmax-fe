@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
 
 import { ItemType } from '../utilities/types';
+import tiebomer from '../assets/tiebomber.png';
 
 type FeaturedProps = { items: ItemType[] };
 export default function FeaturedCarousel({ items }: FeaturedProps) {
@@ -73,7 +74,7 @@ function Item({ item, curr }: ItemProps) {
       }}
     >
       <img
-        src={item.imgUrl}
+        src={item.imgUrl ? item.imgUrl : tiebomer}
         alt={item.description}
       />
     </div>

@@ -10,6 +10,7 @@ import CartPage from '../pages/CartPage';
 import RequireAuth from './RequireAuth';
 import LoginPage from '../pages/LoginPage';
 import ItemDetailPage from '../pages/ItemDetailPage';
+import ItemAddedPage from '../pages/ItemAddedPage';
 
 export default function Router() {
   return (
@@ -18,9 +19,10 @@ export default function Router() {
 
         <Route index element={<HomePage />} />
         <Route path="/cart" element={<CartPage />} />
-        <Route path="/signup" element = {<SignUpPage/>} />
-        <Route path="/login" element = {<LoginPage/>} />
-        <Route path="/item/:itemId" element = {<ItemDetailPage />} />
+        <Route path="/signup" element={<SignUpPage/>} />
+        <Route path="/login" element={<LoginPage/>} />
+        <Route path="/item/:itemId" element={<ItemDetailPage />} />
+        <Route path="item-added-to-cart" element={<ItemAddedPage />} />
 
         <Route element={<RequireAuth role="User" />} >
           <Route path="/purchase-history" element={<PurchaseHistoryPage />} />

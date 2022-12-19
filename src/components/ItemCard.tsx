@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 
 import { ItemType } from '../utilities/types';
+import tiebomer from '../assets/tiebomber.png';
 
 export default function ItemCard({ item }: { item: ItemType }) {
   const navigate = useNavigate();
@@ -11,7 +12,7 @@ export default function ItemCard({ item }: { item: ItemType }) {
     >
       <div className='h-48 w-48'>
         <img
-          src={item.imgUrl}
+          src={item.imgUrl ? item.imgUrl : tiebomer}
           alt={item.description}
         />
       </div>
