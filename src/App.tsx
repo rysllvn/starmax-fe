@@ -4,7 +4,7 @@ import { useEffect, useReducer } from 'react';
 import './App.css';
 import Layout from './components/Layout';
 import HomePage from './pages/HomePage';
-import TeamPage from './pages/TeamPage';
+
 import NoMatchPage from './pages/NoMatchPage';
 import SignUpPage from './pages/SignUpPage';
 import ShippingPage from './pages/ShippingPage';
@@ -17,6 +17,7 @@ import { AuthContext, CartContext, DispatchContext } from './utilities/Contexts'
 import { initialState, reducer } from './utilities/AppReducer';
 import Router from './components/Router';
 import { SET_USER_ACTION_TYPE, USER_DATA_KEY } from './utilities/constants';
+import { Route, Routes } from 'react-router-dom';
 
 function App() {
   /***************************************************************
@@ -39,7 +40,6 @@ function App() {
           <Routes>
               <Route path="/" element={<Layout />}>
                 <Route index element={<HomePage />} />
-                <Route path="team" element={<TeamPage />} />
                 <Route path="/signup" element = {<SignUpPage/>} />
                 <Route path="/login" element = {<LoginPage/>} />
                 <Route path="/profile" element = {<ProfilePage/>} />

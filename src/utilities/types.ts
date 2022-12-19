@@ -24,7 +24,7 @@ export type UserType = {
 };
 
 export type AddressType = {
-  id: string;
+  id?: string;
   userId?: string;
   street: string;
   city: string;
