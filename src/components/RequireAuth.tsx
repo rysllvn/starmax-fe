@@ -5,13 +5,10 @@ import { SET_USER_ACTION_TYPE, USER_DATA_KEY } from '../utilities/constants';
 import { AuthContext, DispatchContext } from '../utilities/Contexts';
 import { UserType } from '../utilities/types';
 
-
-
 export default function RequireAuth({ role }: { role: 'User' | 'Admin' }) {
   const dispatch = useContext(DispatchContext);
   let userData = useContext(AuthContext);
   let location = useLocation();
-
 
   if (role !== userData?.role) {
     const userData: string | null = localStorage.getItem(USER_DATA_KEY);

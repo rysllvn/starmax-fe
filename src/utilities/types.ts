@@ -32,8 +32,10 @@ export type AddressType = {
   zip: string;
 };
 
+export type ItemTypeT = 'Clothing' | 'Vehicles' | 'Electronics';
+
 export type ItemType = {
-  id: string;
+  id?: string;
   name?: string;
   stock?: number;
   msrp?: number;
@@ -41,7 +43,7 @@ export type ItemType = {
   imgUrl?: string;
   currentPrice?: number;
   current_price?: number;
-  type?: string;
+  type?: ItemTypeT;
   img_url?: string;
 };
 

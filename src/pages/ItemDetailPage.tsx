@@ -26,9 +26,9 @@ export default function ItemDetailPage() {
 
   function handleAddToCart() {
     const newCart = { ...cart };
-    if (item && cart[item.id]) {
+    if (item?.id && cart[item.id]) {
       newCart[item.id].amount = cart[item.id].amount + 1;
-    } else if (item) {
+    } else if (item?.id) {
       newCart[item.id] = { itemId: item.id, amount: 1};
     }
     dispatch({ type: UPDATE_CART_ACTION_TYPE, newCart });
