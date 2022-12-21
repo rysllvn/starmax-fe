@@ -1,5 +1,6 @@
 import { cartItemType } from "../utilities/types";
 
+//SHOW PRICE PER ITEM AND PRICE * AMOUNT
 //Currently will resize if text is too long. Find out some way to prevent this
 export default function CartCard(props : {details: cartItemType, onDelete : Function, onAmountChange : Function}){
     const details = props.details;
@@ -12,11 +13,17 @@ export default function CartCard(props : {details: cartItemType, onDelete : Func
         onAmountChange(details.itemId, newAmount);
     }
 
-    //THIS CURRENTLY HAS ISSUES. Can't backspace to a single digit
-    function handleAmountChange(e : React.ChangeEvent<HTMLInputElement>){
+    //Used to add a custom amount. This cannot be used to remove items from the checkout
+    //Probably need to move more of this logic into the page itself
+    function handleAmountChange(e : React.ChangeEvent<HTMLInputElement>, num? : Number){
+        let newAmount : Number;
         e.preventDefault();
-        const newAmount = Number(e.target.value);
-        console.log(newAmount);
+        if(num === null){
+            newAmount = num;
+        } else {
+            newAmount = Number(e.target.value);
+        }
+
         if(newAmount > 0){
             onAmountChange(details.itemId, newAmount);
         }
@@ -50,11 +57,12 @@ export default function CartCard(props : {details: cartItemType, onDelete : Func
                         <option value="8">8</option>
                         <option value="9">9</option>
                         <option value="10">10</option>
+                        <option value={details.amount}>{details.amount}</option>
                     </select>
                 </div>
 
-                <div className="row-start-6 col-start-2 mr-1">
-                    <input className="px-1" placeholder="Amount" value={details.amount} pattern="^[0-9]*$" title="Invalid Amount" onChange={(e) => handleAmountChange(e)}></input>
+                <div className="row-start-6 col-start-2 flex items-center">
+                    <input className="px-1  w-1/3 bg-slate-300 rounded-md placeholder:text-slate-700" placeholder="Amount" pattern="^[0-9]*$" title="Invalid Amount" onChange={(e) => handleAmountChange(e)}></input>
                 </div>
                 
                 <div className="row-start-3 col-start-3 row-span-3 col-span-2 px-2 py-2 flex-wrap border-b-2 border-l-2 rounded-bl-lg">
