@@ -39,20 +39,19 @@ export default function ItemDetailPage() {
     <>
       {
         item ?
-        <div>
-          <h1>{item.name}</h1>
-          <div>{item.description}</div>
-          <div className='w-96'>
-            <img
-              src={item.img_url ? item.img_url : tieBomber }
-              alt={`${item.name} ${item.description}`}
-            />
-          </div>
+        <div className='flex flex-col items-center gap-4'>
+          <h1 className='text-4xl'>{item.name}</h1>
+          <div className='text-lg'>{item.description}</div>
+          <img
+            className='w-96 bg-slate-300 p-8 rounded-xl'
+            src={item.img_url ? item.img_url : tieBomber }
+            alt={`${item.name} ${item.description}`}
+          />
           
           <div>MSRP: {item.msrp}</div>
           <div>Current Price: {item.current_price}</div>
           <button
-            className='bg-slate-200 p-4 rounded'
+            className='bg-slate-200 p-4 rounded w-fit'
             onClick={handleAddToCart}
           >
             Add to Cart

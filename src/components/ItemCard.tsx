@@ -7,7 +7,7 @@ export default function ItemCard({ item }: { item: ItemType }) {
   const navigate = useNavigate();
   return (
     <div 
-      onClick={() => navigate(`item/${item.id}`)}
+      onClick={() => navigate(`/item/${item.id}`)}
       className='w-64 h-64 bg-slate-800 rounded-md p-4 shadow-md cursor-pointer hover:scale-125'
     >
       <div className='h-48 w-48'>
