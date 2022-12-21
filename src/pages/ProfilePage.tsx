@@ -49,6 +49,11 @@ async function handleSubmitAddress(event:React.FormEvent<HTMLFormElement>) {
         "state":state,
         "zipcode":zip
         
+    },
+    {
+        "headers": {
+            authorization:userData?.token
+        }
     }).then((resp) => {
         console.log(resp);
         //navigate("/login")
@@ -71,7 +76,7 @@ const [expirationDate,setExpirationDate] = useState<Date | null|string>(null);
 
 function handleCardNumber(event:React.ChangeEvent<HTMLInputElement>) {
     setCardNumber(event.target.value);
-    console.log(event.target.value);
+    
 }
 function handleGivenName(event:React.ChangeEvent<HTMLInputElement>) {
     setGivenName(event.target.value);
@@ -89,20 +94,24 @@ function handleEmail(event:React.ChangeEvent<HTMLInputElement>) {
 
 function handleDateChange(event:React.ChangeEvent<HTMLInputElement>) {
     setExpirationDate((event.target.value));
-    console.log(event.target.value);
+    
 }
 
 
 
 async function handleSubmitUser(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    console.log(email,givenName,surname,cardNumber,expirationDate);
+    //console.log(email,givenName,surname,cardNumber,expirationDate);
     await eCommerce_API.put("/user", {
         "newEmail": email,
         "newGivenName":givenName,
         "newSurname":surname,
         "newCardNumber":cardNumber,
         "newExpirationDate":expirationDate
+    },{
+        "headers": {
+            authorization:userData?.token
+        }
     }).then((resp) => {
         console.log(resp);
         //navigate("/login")
@@ -192,7 +201,8 @@ return (
         </form>
 
         <div>
-            {/* holds all addresses for user*/}
+            
+            {/* map holds all addresses for user*/}
         </div>
     </div>
     
