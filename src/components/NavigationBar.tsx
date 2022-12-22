@@ -28,8 +28,8 @@ export default function NavigationBar() {
   }
 
   function totalItemCount(): number {
-    return Object.values(cart).reduce((acc, currCartItem) => {
-      return acc + currCartItem.amount
+    return Array.from(cart.values()).reduce((acc, amount) => {
+      return acc + amount;
     }, 0);
   }
 

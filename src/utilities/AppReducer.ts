@@ -3,7 +3,7 @@ import { AppStateType } from './types';
 
 export const initialState: AppStateType = {
   userData: null,
-  cart: {},
+  cart: new Map(),
   items: new Map()
 };
 

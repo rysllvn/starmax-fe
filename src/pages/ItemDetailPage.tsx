@@ -26,12 +26,8 @@ export default function ItemDetailPage() {
   }, [params])
 
   function handleAddToCart() {
-    const newCart = { ...cart };
-    if (item?.id && cart[item.id]) {
-      newCart[item.id].amount = cart[item.id].amount + 1;
-    } else if (item?.id) {
-      newCart[item.id] = { itemId: item.id, amount: 1};
-    }
+    const newCart = new Map(cart);
+    if (item) newCart.set(item, 1);
     dispatch({ type: UPDATE_CART_ACTION_TYPE, newCart });
     navigate('/item-added-to-cart', { state: { itemId: item?.id } });
   }

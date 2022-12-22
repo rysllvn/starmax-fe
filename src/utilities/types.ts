@@ -5,7 +5,7 @@
 ******************************************************/
 export type AppStateType = {
   userData: UserType | null;
-  cart: { [key: string]: CartType };
+  cart: Map<ItemType, number>;
   items: Map<string, ItemType>;
 };
 
