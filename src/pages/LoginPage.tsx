@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import eCommerce_API from "../utilities/ApiConfig";
 import { SET_USER_ACTION_TYPE, USER_DATA_KEY } from '../utilities/constants';
@@ -13,14 +13,6 @@ export default function LoginPage() {
     const location = useLocation();
 
     const from = location.state?.from.pathname || '/';
-
-    useEffect(() => {
-      const userData = localStorage.getItem(USER_DATA_KEY);
-      if (userData) {
-        dispatch({ type: SET_USER_ACTION_TYPE, userData: JSON.parse(userData) });
-        navigate(from, { replace: true });
-      }
-    }, [dispatch, navigate, from]);
 
     function handleEmail(event:React.ChangeEvent<HTMLInputElement>) {
         setEmail(event.target.value);
