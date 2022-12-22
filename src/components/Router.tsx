@@ -13,7 +13,9 @@ import ItemDetailPage from '../pages/ItemDetailPage';
 import ProfilePage from '../pages/ProfilePage';
 import ItemAddedPage from '../pages/ItemAddedPage';
 import ShopPage from '../pages/ShopPage';
-import AdminPage from '../pages/AdminPage';
+import AdminInventoryPage from '../pages/AdminInventoryPage';
+import AdminLayout from './AdminLayout';
+import ManageOrdersPage from '../pages/ManageOrders';
 
 export default function Router() {
   return (
@@ -34,12 +36,18 @@ export default function Router() {
           <Route path="/profile" element={<ProfilePage />} />
         </Route>
 
-        <Route element={<RequireAuth role="Admin" />} >
-          <Route path="/admin" element={<AdminPage />} />
-        </Route>
-
-        <Route path="*" element={<NoMatchPage />} />
       </Route>
+
+      <Route path="/admin" element={<AdminLayout />}>
+        <Route element={<RequireAuth role="Admin" />} >
+          <Route path="inventory" element={<AdminInventoryPage />} />
+        </Route>
+        <Route element={<RequireAuth role="Admin" />} >
+          <Route path="orders" element={<ManageOrdersPage />} />
+        </Route>
+      </Route>
+
+      <Route path="*" element={<NoMatchPage />} />
     </Routes>
   )
 }

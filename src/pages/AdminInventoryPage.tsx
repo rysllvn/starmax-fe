@@ -5,7 +5,7 @@ import eCommerce_API from '../utilities/ApiConfig';
 import { AppStateContext } from '../utilities/Contexts';
 import { ItemType } from '../utilities/types';
 
-export default function AdminPage() {
+export default function AdminInventoryPage() {
   const applicationState = useContext(AppStateContext);
   const userData = applicationState.userData;
   const [items, setItems] = useState<ItemType[]>([]);

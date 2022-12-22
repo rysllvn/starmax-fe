@@ -12,13 +12,13 @@ export default function UpdateUserForm() {
   //user data for changing credintials 
   const applicationState = useContext(AppStateContext);
   const userData = applicationState.userData;
-  const [givenName,setGivenName] = useState<string>(userData?.givenName || "");
+  const [givenName,setGivenName] = useState(userData?.givenName || "");
   const [changeGivenNameMode, setChangeGivenNameMode] = useState(false);
-  const [surname,setSurname] = useState<string>(userData?.surname || "");
+  const [surname,setSurname] = useState(userData?.surname || "");
   const [changeSurnameMode, setChangeSurnameMode] = useState(false);
-  const [email,setEmail] = useState<string>(userData?.email || "");
-  const [cardNumber,setCardNumber] = useState<string>("");
-  const [expirationDate,setExpirationDate] = useState<string | null>(null);
+  const [email,setEmail] = useState(userData?.email || "");
+  const [cardNumber,setCardNumber] = useState("");
+  const [expirationDate,setExpirationDate] = useState("");
 
   function handleCardNumber(event: ChangeEvent<HTMLInputElement>) {
       setCardNumber(event.target.value);
@@ -71,7 +71,7 @@ export default function UpdateUserForm() {
                     ? 
                     <input className="flex " type ="text"id ="given_name"name="given_name" placeholder="First Name" value={givenName} onChange={(e) => handleGivenName(e)}/> 
                     : 
-                    <div onClick={()=> setChangeGivenNameMode(true) }>{userData?.givenName}</div>
+                    <div onClick={()=> setChangeGivenNameMode(true) }>{userData?.givenName || ""}</div>
                 }
           <h2 className="flex text-xl font-bold">Last Name: </h2>
                 {
@@ -79,18 +79,18 @@ export default function UpdateUserForm() {
                     ? 
                     <input className="flex bg-slate-100 text-emerald-300" type="text"  value={surname} onChange={(e) => handleSurName(e) }/> 
                     : 
-                    <div onClick={()=> setChangeSurnameMode(true) }>{userData?.surname}</div>
+                    <div onClick={()=> setChangeSurnameMode(true) }>{userData?.surname || ""}</div>
                 }
             <h2 className="flex text-xl font-bold">Email: </h2>
                     <input className="flex " type="text" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" onChange={(e) => handleEmail(e) } value={email}/>
             <h2 className="flex text-xl font-bold">Card Number: </h2>
                 {
-                    <input  type ="text" pattern="[0-9]{13,16}" onChange={(e)=> handleCardNumber(e)} value={userData?.cardNumber}/>
+                    <input  type ="text" pattern="[0-9]{13,16}" onChange={(e)=> handleCardNumber(e)} value={userData?.cardNumber || ""}/>
                 }
             {/* Exp. Date Changing  */} 
                 <h2 className="flex text-xl font-bold">Expiration Date: </h2>
                 {
-                    <input type="month" onChange={handleDateChange} value = {userData?.expirationDate}></input>
+                    <input type="month" onChange={handleDateChange} value = {userData?.expirationDate || ''}></input>
                 }
           <button className="bg-slate-800 rounded-md text-white mt-2 px-5 py-2 ease-out duration-300 hover:scale-125">Update Info</button>
         </form>

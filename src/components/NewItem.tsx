@@ -48,6 +48,7 @@ export default function NewItem({ onAddItem }: { onAddItem: Function }) {
         <label className='flex justify-between'>Description
           <textarea
             className='w-full'
+            onChange={() => {}}
             value=""
           />
         </label>

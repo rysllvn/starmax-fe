@@ -24,15 +24,12 @@ export default function CartCard(props : {item: ItemType, amount: number, onDele
         } else {
             newAmount = Number(e.target.value);
         }
-
         if(newAmount > 0){
             onAmountChange(item.id, newAmount);
         }
-        
     }
 
-    return(
-        
+    return (
         <div className="flex flex-row mt-10 mb-10 ml-28 mr-28 drop-shadow-xl outline outline-slate-500 rounded-md">
             <div className="flex flex-none h-48 w-48 bg-slate-900 border-r-2 border-r-slate-500">
                 <img src={item.imgUrl} alt="Veryusefultext"></img>
@@ -73,7 +70,6 @@ export default function CartCard(props : {item: ItemType, amount: number, onDele
                 <div className="row-start-6 col-start-4 flex items-center flex-row-reverse px-2">
                     <button onClick={() => onDelete(item.id)} className="rounded-md px-2 bg-slate-500 hover:bg-red-500 text-white">Remove Item</button>
                 </div>
-                
             </div> 
         </div>
     );

@@ -8,7 +8,7 @@ import Router from './components/Router';
 function App() {
   /***************************************************************
   //  global application state
-  //  see AppReducer for information
+  //  see AppReducer.ts for information
   ****************************************************************/
   const [state, dispatch] = useReducer(reducer, initialState);
 
