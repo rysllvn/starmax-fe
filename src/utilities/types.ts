@@ -7,6 +7,7 @@ export type AppStateType = {
   userData: UserType | null;
   cart: Map<ItemType, number>;
   items: Map<string, ItemType>;
+  itemsLoaded: boolean;
 };
 
 /******************************************************************

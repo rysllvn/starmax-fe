@@ -1,21 +1,13 @@
-import { useEffect, useState } from 'react';
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
-import { ItemType } from '../utilities/types';
 import FeaturedCarousel from '../components/FeaturedCarousel';
 import HorizontalItemSection from '../components/HorizontalItemSection';
-import eCommerce_API from '../utilities/ApiConfig';
+import { AppStateContext } from '../utilities/Contexts';
 
 export default function HomePage() {
-    const [featuredItems, setFeaturedItems] = useState<ItemType[]>([]);
-
-    useEffect(() => {
-      eCommerce_API.get("/items/all",{
-      }).then((resp) => {
-        const items: ItemType[] = resp.data;
-        setFeaturedItems(items);
-      });
-    }, []);
+    const applicationState = useContext(AppStateContext);
+    const featuredItems = Array.from(applicationState.items.values());
 
     return (
       <>

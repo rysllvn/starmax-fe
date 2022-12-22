@@ -1,9 +1,11 @@
-import { useReducer } from 'react';
+import { useEffect, useReducer } from 'react';
 
 import './App.css';
 import { AppStateContext, DispatchContext } from './utilities/Contexts';
 import { initialState, reducer } from './utilities/AppReducer';
 import Router from './components/Router';
+import eCommerce_API from './utilities/ApiConfig';
+import { UPDATE_ITEMS } from './utilities/constants';
 
 function App() {
   /***************************************************************
@@ -11,6 +13,13 @@ function App() {
   //  see AppReducer.ts for information
   ****************************************************************/
   const [state, dispatch] = useReducer(reducer, initialState);
+
+  useEffect(() => {
+    eCommerce_API.get('/items/all')
+    .then((response) => {
+      dispatch({ type: UPDATE_ITEMS, items: response.data });
+    });
+  }, [dispatch])
 
   return (
     <DispatchContext.Provider value={dispatch}>

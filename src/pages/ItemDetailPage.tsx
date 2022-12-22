@@ -1,29 +1,19 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import eCommerce_API from '../utilities/ApiConfig';
 import { UPDATE_CART_ACTION_TYPE } from '../utilities/constants';
 import { AppStateContext, DispatchContext } from '../utilities/Contexts';
 
-import { ItemType } from '../utilities/types';
 import tieBomber from '../assets/tiebomber.png';
 
 
 export default function ItemDetailPage() {
+  const items = useContext(AppStateContext).items;
   const navigate = useNavigate();
   const params = useParams();
-  const [item, setItem] = useState<ItemType | null>();
+  const item = params.itemId ? items.get(params.itemId) : null;
   const dispatch = useContext(DispatchContext);
   const applicationState = useContext(AppStateContext);
   const cart = applicationState.cart;
-
-  useEffect(() => {
-    eCommerce_API.get("/items/all",{
-    }).then((resp) => {
-      const items: ItemType[] = resp.data;
-      const thisItem = items.find(item => item.id === params.itemId);
-      setItem(thisItem);
-    });
-  }, [params])
 
   function handleAddToCart() {
     const newCart = new Map(cart);

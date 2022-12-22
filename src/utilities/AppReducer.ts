@@ -1,10 +1,12 @@
-import { SET_USER_ACTION_TYPE, UPDATE_CART_ACTION_TYPE } from './constants';
+import { SET_USER_ACTION_TYPE, UPDATE_CART_ACTION_TYPE, UPDATE_ITEMS } from './constants';
 import { AppStateType } from './types';
+import { convertItemArrayToMap } from './utility_functions';
 
 export const initialState: AppStateType = {
   userData: null,
   cart: new Map(),
-  items: new Map()
+  items: new Map(),
+  itemsLoaded: false,
 };
 
 /***********************************************************************************************
@@ -23,7 +25,13 @@ export function reducer(state: AppStateType, action: { [key: string]: any }) {
       return {
         ...state,
         userData: action.userData,
-      }  
+      }
+    case UPDATE_ITEMS:
+      return {
+        ...state,
+        itemsLoaded: true,
+        items: convertItemArrayToMap(action.items),
+      }
     default:
       break;
   }
