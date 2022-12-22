@@ -1,7 +1,7 @@
 import { useReducer } from 'react';
 
 import './App.css';
-import { AuthContext, CartContext, DispatchContext } from './utilities/Contexts';
+import { AppStateContext, DispatchContext } from './utilities/Contexts';
 import { initialState, reducer } from './utilities/AppReducer';
 import Router from './components/Router';
 
@@ -14,11 +14,9 @@ function App() {
 
   return (
     <DispatchContext.Provider value={dispatch}>
-      <CartContext.Provider value={state.cart}>
-        <AuthContext.Provider value={state.userData}>
-          <Router/>
-        </AuthContext.Provider>
-      </CartContext.Provider>
+      <AppStateContext.Provider value={state}>
+        <Router />
+      </AppStateContext.Provider>
     </DispatchContext.Provider>
   );
 }

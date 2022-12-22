@@ -2,14 +2,15 @@ import { UserIcon, ShoppingCartIcon } from '@heroicons/react/24/outline';
 import { useState, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { USER_DATA_KEY, SET_USER_ACTION_TYPE } from '../utilities/constants';
-import { CartContext, DispatchContext, AuthContext } from '../utilities/Contexts';
+import { DispatchContext, AppStateContext } from '../utilities/Contexts';
 
 export default function NavigationBar() {
   const [userDropdownOpen, setUserDropdownOpen] = useState(false);
   const navigate = useNavigate();
-  const cart = useContext(CartContext);
+  const applicationState = useContext(AppStateContext);
+  const cart = applicationState.cart;
   const dispatch = useContext(DispatchContext);
-  const userData = useContext(AuthContext);
+  const userData = applicationState.userData;
 
   function handleUserClick() {
     if (userData) {

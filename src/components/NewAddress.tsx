@@ -1,9 +1,10 @@
 import { useState, ChangeEvent, FormEvent, useContext } from 'react';
 import eCommerce_API from '../utilities/ApiConfig';
-import { AuthContext } from '../utilities/Contexts';
+import { AppStateContext } from '../utilities/Contexts';
 
 export default function NewAddress() {
-    const userData = useContext(AuthContext);
+    const applicationState = useContext(AppStateContext);
+    const userData = applicationState.userData;
     // addressData for adding address;
     const [street, setStreet] = useState<string>("");
     const [city, setCity] = useState<string>("");

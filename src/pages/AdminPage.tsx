@@ -2,11 +2,12 @@ import { useContext, useEffect, useState } from 'react';
 import AdminTable from '../components/AdminTable';
 import NewItem from '../components/NewItem';
 import eCommerce_API from '../utilities/ApiConfig';
-import { AuthContext } from '../utilities/Contexts';
+import { AppStateContext } from '../utilities/Contexts';
 import { ItemType } from '../utilities/types';
 
 export default function AdminPage() {
-  const userData = useContext(AuthContext);
+  const applicationState = useContext(AppStateContext);
+  const userData = applicationState.userData;
   const [items, setItems] = useState<ItemType[]>([]);
   const [loaded, setLoaded] = useState(false);
 

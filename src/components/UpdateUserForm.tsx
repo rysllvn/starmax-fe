@@ -6,11 +6,12 @@ import {
 } from 'react';
 
 import eCommerce_API from "../utilities/ApiConfig";
-import { AuthContext } from "../utilities/Contexts";
+import { AppStateContext } from "../utilities/Contexts";
 
 export default function UpdateUserForm() {
   //user data for changing credintials 
-  const userData = useContext(AuthContext);
+  const applicationState = useContext(AppStateContext);
+  const userData = applicationState.userData;
   const [givenName,setGivenName] = useState<string>(userData?.givenName || "");
   const [changeGivenNameMode, setChangeGivenNameMode] = useState(false);
   const [surname,setSurname] = useState<string>(userData?.surname || "");

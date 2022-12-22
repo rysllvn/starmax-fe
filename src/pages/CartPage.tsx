@@ -106,7 +106,7 @@ export default function CheckoutConfirmationPage(){
             return;
         }
         const copyCartCards = [...cartCards];
-        const index = copyCartCards.findIndex(cards => (cards.itemId == id));
+        const index = copyCartCards.findIndex(cards => (cards.itemId === id));
         copyCartCards[index].amount = newAmount;
         setCartCards(copyCartCards);
       }

@@ -4,6 +4,7 @@ import { AppStateType } from './types';
 export const initialState: AppStateType = {
   userData: null,
   cart: {},
+  items: new Map()
 };
 
 /***********************************************************************************************

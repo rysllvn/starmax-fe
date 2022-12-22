@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import eCommerce_API from '../utilities/ApiConfig';
 import { UPDATE_CART_ACTION_TYPE } from '../utilities/constants';
-import { CartContext, DispatchContext } from '../utilities/Contexts';
+import { AppStateContext, DispatchContext } from '../utilities/Contexts';
 
 import { ItemType } from '../utilities/types';
 import tieBomber from '../assets/tiebomber.png';
@@ -13,7 +13,8 @@ export default function ItemDetailPage() {
   const params = useParams();
   const [item, setItem] = useState<ItemType | null>();
   const dispatch = useContext(DispatchContext);
-  const cart = useContext(CartContext);
+  const applicationState = useContext(AppStateContext);
+  const cart = applicationState.cart;
 
   useEffect(() => {
     eCommerce_API.get("/items/all",{
