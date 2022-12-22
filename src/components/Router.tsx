@@ -9,6 +9,7 @@ import PurchaseHistoryPage from '../pages/PurchaseHistoryPage';
 import CartPage from '../pages/CartPage';
 import RequireAuth from './RequireAuth';
 import LoginPage from '../pages/LoginPage';
+import CheckoutConfirmationPage from '../pages/CheckoutConfirmationPage';
 import ItemDetailPage from '../pages/ItemDetailPage';
 <<<<<<< HEAD
 import ProfilePage from '../pages/ProfilePage';

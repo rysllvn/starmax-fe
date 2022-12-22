@@ -70,8 +70,10 @@ export type CartType = {
 };
 
 export type cartItemType = {
-  id : string;
+  itemId : string;
+  orderId : string;
   name : string;
-  qty : number;
-  price : number;
+  imgUrl?: string;
+  amount : number;
+  purchasePrice : number;
 };
