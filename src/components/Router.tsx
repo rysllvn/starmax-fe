@@ -10,6 +10,10 @@ import CartPage from '../pages/CartPage';
 import RequireAuth from './RequireAuth';
 import LoginPage from '../pages/LoginPage';
 import CheckoutConfirmationPage from '../pages/CheckoutConfirmationPage';
+import ItemDetailPage from '../pages/ItemDetailPage';
+import ItemAddedPage from '../pages/ItemAddedPage';
+import ShopPage from '../pages/ShopPage';
+import AdminPage from '../pages/AdminPage';
 
 export default function Router() {
   return (
@@ -18,9 +22,11 @@ export default function Router() {
 
         <Route index element={<HomePage />} />
         <Route path="/cart" element={<CartPage />} />
-        <Route path="/signup" element = {<SignUpPage/>} />
-        <Route path="/login" element = {<LoginPage/>} />
-        <Route path="/cart/confirmation" element= {<CheckoutConfirmationPage />} />
+        <Route path="/signup" element={<SignUpPage/>} />
+        <Route path="/login" element={<LoginPage/>} />
+        <Route path="/item/:itemId" element={<ItemDetailPage />} />
+        <Route path="/item-added-to-cart" element={<ItemAddedPage />} />
+        <Route path="/shop" element={<ShopPage />} />
 
         <Route element={<RequireAuth role="User" />} >
           <Route path="/purchase-history" element={<PurchaseHistoryPage />} />
@@ -28,6 +34,7 @@ export default function Router() {
         </Route>
 
         <Route element={<RequireAuth role="Admin" />} >
+          <Route path="/admin" element={<AdminPage />} />
         </Route>
 
         <Route path="*" element={<NoMatchPage />} />

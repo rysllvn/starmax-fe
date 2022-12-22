@@ -2,69 +2,25 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { ItemType } from '../utilities/types';
-
-import tiebomer from '../assets/tiebomber.png';
-import xwing from '../assets/xwing.png';
 import FeaturedCarousel from '../components/FeaturedCarousel';
 import HorizontalItemSection from '../components/HorizontalItemSection';
-
-
-const dummyItems = [
-  {
-    id: '1',
-    name: 'Tie Fighter',
-    stock: 8,
-    msrp: 10,
-    description: 'shiny sword',
-    imgUrl: tiebomer,
-    currentPrice: 18
-  },
-  {
-    id: '2',
-    name: 'X-Wing',
-    stock: 8,
-    msrp: 10,
-    description: 'shiny sword',
-    imgUrl: xwing,
-    currentPrice: 18
-  },
-  {
-    id: '3',
-    name: 'Tie-Fighter',
-    stock: 8,
-    msrp: 10,
-    description: 'sdf',
-    imgUrl: tiebomer,
-    currentPrice: 18
-  },
-  {
-    id: '4',
-    name: 'X-Wing',
-    stock: 8,
-    msrp: 10,
-    description: 'shiny sword',
-    imgUrl: xwing,
-    currentPrice: 18
-  },
-  {
-    id: '6',
-    name: 'Tie Fighter',
-    stock: 8,
-    msrp: 10,
-    description: 'shiny sword',
-    imgUrl: tiebomer,
-    currentPrice: 18
-  },
-];
+import eCommerce_API from '../utilities/ApiConfig';
 
 export default function HomePage() {
     const [featuredItems, setFeaturedItems] = useState<ItemType[]>([]);
 
     useEffect(() => {
-      setFeaturedItems(dummyItems);
+      eCommerce_API.get("/items/all",{
+      }).then((resp) => {
+        const items: ItemType[] = resp.data;
+        setFeaturedItems(items);
+      });
     }, []);
 
     return (
+      <>
+      {
+        featuredItems ?
         <>
           <section className='flex justify-center mb-10'>
             <div className='min-w-[50%] flex flex-col justify-between min-h-full'>
@@ -80,8 +36,12 @@ export default function HomePage() {
             <FeaturedCarousel items={featuredItems} />
           </section>
 
-          <HorizontalItemSection items={featuredItems} bgColor="bg-emerald-200" />
-          <HorizontalItemSection items={featuredItems} bgColor="bg-sky-200" />
+          <HorizontalItemSection items={featuredItems.slice(0, 4)} bgColor="bg-emerald-200" />
+          <HorizontalItemSection items={featuredItems.slice(4,8)} bgColor="bg-sky-200" />
         </>
+        :
+        <div className='text-xl'>Loading...</div>
+      }
+      </>
     )
 }

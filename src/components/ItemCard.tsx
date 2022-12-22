@@ -1,17 +1,18 @@
 import { useNavigate } from 'react-router-dom';
 
 import { ItemType } from '../utilities/types';
+import tiebomer from '../assets/tiebomber.png';
 
 export default function ItemCard({ item }: { item: ItemType }) {
   const navigate = useNavigate();
   return (
     <div 
-      onClick={() => navigate(`item/${item.id}`)}
+      onClick={() => navigate(`/item/${item.id}`)}
       className='w-64 h-64 bg-slate-800 rounded-md p-4 shadow-md cursor-pointer hover:scale-125'
     >
       <div className='h-48 w-48'>
         <img
-          src={item.imgUrl}
+          src={item.imgUrl ? item.imgUrl : tiebomer}
           alt={item.description}
         />
       </div>

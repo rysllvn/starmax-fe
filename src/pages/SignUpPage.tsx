@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import eCommerce_API from "../utilities/ApiConfig";
 
 
@@ -44,7 +44,6 @@ export default function SignUpPage() {
             "password2":password2
         }).then((resp) => {
             setError("");
-            //console.log(resp);
             navigate("/login")
         }).catch((e) => setError(e.response.data.message))
 
