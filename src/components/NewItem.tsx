@@ -6,6 +6,7 @@ const options = ['Clothing', 'Vehicles', 'Electronics'];
 
 export default function NewItem({ onAddItem }: { onAddItem: Function }) {
   const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
   const [stock, setStock] = useState(0);
   const [msrp, setMsrp] = useState(0);
   const [current_price, setCurrentPrice] = useState(0);
@@ -13,7 +14,7 @@ export default function NewItem({ onAddItem }: { onAddItem: Function }) {
 
   function handleAddItem(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    onAddItem({ name, stock, msrp, current_price, type });
+    onAddItem({ name, stock, msrp, current_price, type, description });
     // reset
     setName('');
     setStock(0);
@@ -48,8 +49,8 @@ export default function NewItem({ onAddItem }: { onAddItem: Function }) {
         <label className='flex justify-between'>Description
           <textarea
             className='w-full'
-            onChange={() => {}}
-            value=""
+            onChange={(e) => setDescription(e.target.value)}
+            value={description}
           />
         </label>
         <label className='flex justify-between'>Stock

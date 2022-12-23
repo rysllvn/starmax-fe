@@ -11,7 +11,6 @@ import RequireAuth from './RequireAuth';
 import LoginPage from '../pages/LoginPage';
 import ItemDetailPage from '../pages/ItemDetailPage';
 import ProfilePage from '../pages/ProfilePage';
-import ItemAddedPage from '../pages/ItemAddedPage';
 import ShopPage from '../pages/ShopPage';
 import AdminInventoryPage from '../pages/AdminInventoryPage';
 import AdminLayout from './AdminLayout';
@@ -27,7 +26,6 @@ export default function Router() {
         <Route path="/signup" element={<SignUpPage/>} />
         <Route path="/login" element={<LoginPage/>} />
         <Route path="/item/:itemId" element={<ItemDetailPage />} />
-        <Route path="/item-added-to-cart" element={<ItemAddedPage />} />
         <Route path="/shop" element={<ShopPage />} />
 
         <Route element={<RequireAuth role="User" />} >

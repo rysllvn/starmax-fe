@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { UPDATE_CART_ACTION_TYPE } from '../utilities/constants';
 import { AppStateContext, DispatchContext } from '../utilities/Contexts';
 
@@ -8,7 +8,6 @@ import tieBomber from '../assets/tiebomber.png';
 
 export default function ItemDetailPage() {
   const items = useContext(AppStateContext).items;
-  const navigate = useNavigate();
   const params = useParams();
   const item = params.itemId ? items.get(params.itemId) : null;
   const dispatch = useContext(DispatchContext);
@@ -19,7 +18,6 @@ export default function ItemDetailPage() {
     const newCart = new Map(cart);
     if (item) newCart.set(item, 1);
     dispatch({ type: UPDATE_CART_ACTION_TYPE, newCart });
-    navigate('/item-added-to-cart', { state: { itemId: item?.id } });
   }
 
   return (
@@ -38,10 +36,13 @@ export default function ItemDetailPage() {
           <div>MSRP: {item.msrp}</div>
           <div>Current Price: {item.current_price}</div>
           <button
-            className='bg-slate-200 p-4 rounded w-fit'
+            className={`${cart.has(item) ? 'bg-slate-200 text-white' : 'bg-emerald-200'} rounded-md p-4 w-fit`}
             onClick={handleAddToCart}
+            disabled={cart.has(item)}
           >
-            Add to Cart
+            {
+              cart.has(item) ? 'Item in Cart' : 'Add to Cart'
+            }
           </button>
         </div>
       :
