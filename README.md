@@ -30,8 +30,8 @@ Full stack, React and Spring, ecommerce project with full CRUD functionality.
   - "Java 8 is a revolutionary release of the world’s #1 development platform."
 - [Apache Maven](https://maven.apache.org/)
   - "Apache Maven is a software project management and comprehension tool."
-- [MySQLConnector Java](https://dev.mysql.com/downloads/connector/j/)
-  - For Java/SQL integration
+- [PostgreSQL](https://www.postgresql.org/docs/current/index.html)
+  - Robust, reliable, database
 - [Spring](https://spring.io/)
   - "Spring’s focus on speed, simplicity, and productivity has made it the world's most popular Java framework."
 - [JSON Web Tokens](https://jwt.io/)
