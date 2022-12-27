@@ -23,6 +23,8 @@ Full stack, React and Spring, ecommerce project with full CRUD functionality.
   - "utility-first CSS framework"
 - [heroicons](https://github.com/tailwindlabs/heroicons#readme)
   - "Beautiful hand-crafted SVG icons, by the makers of Tailwind CSS"
+- [AWS S3](https://docs.aws.amazon.com/s3/index.html)
+  - "highly scalable, reliable, fast, and inexpensive data storage."
 
 ## Backend
 
