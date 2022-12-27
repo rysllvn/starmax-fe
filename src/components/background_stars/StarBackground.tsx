@@ -2,7 +2,6 @@ import { useCallback } from "react";
 import Particles from "react-tsparticles";
 import type { Container, Engine } from "tsparticles-engine";
 import { loadFull } from "tsparticles";
-import { config } from './star_config';
 import './StarBackground.css';
 
 export default function StarBackground() {
