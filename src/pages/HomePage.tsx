@@ -25,11 +25,11 @@ export default function HomePage() {
                 to="shop"
               >Shop now</Link>
             </div>
-            <FeaturedCarousel items={featuredItems} />
+            <FeaturedCarousel items={featuredItems.slice(1, 3)} />
           </section>
 
-          <HorizontalItemSection items={featuredItems.slice(0, 4)} bgColor="bg-emerald-200" />
-          <HorizontalItemSection items={featuredItems.slice(4,8)} bgColor="bg-sky-200" />
+          <HorizontalItemSection items={featuredItems.slice(0, 4)} bgColor="bg-emerald-700" />
+          <HorizontalItemSection items={featuredItems.slice(4,8)} bgColor="bg-sky-700" />
         </>
         :
         <div className='text-xl'>Loading...</div>

@@ -8,7 +8,7 @@ export default function ItemCard({ item }: { item: ItemType }) {
   return (
     <div 
       onClick={() => navigate(`/item/${item.id}`)}
-      className='w-64 h-64 bg-slate-800 rounded-md p-4 shadow-md cursor-pointer hover:scale-125'
+      className='w-64 h-64 bg-slate-800 rounded-md p-4 shadow-lg shadow-emerald-300 cursor-pointer hover:scale-125'
     >
       <div className='h-48 w-48'>
         <img

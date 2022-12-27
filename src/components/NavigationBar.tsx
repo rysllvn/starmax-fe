@@ -34,10 +34,10 @@ export default function NavigationBar() {
   }
 
   return (
-    <div className='bg-emerald-300'>
+    <div className='bg-teal-900 text-rose-300 shadow-lg shadow-emerald-300'>
         <nav className="mx-auto container flex justify-between items-center px-10 py-5">
           <Link className='hover:text-white' to="shop">Shop</Link>
-          <Link to="/" className="font-bold text-3xl">Mos Espa Marketplace</Link>
+          <Link to="/" className="font-bold text-5xl">Mos Espa Marketplace</Link>
           <div className='flex items-center relative'>
             <UserIcon
               onClick={handleUserClick}

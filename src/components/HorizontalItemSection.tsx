@@ -3,9 +3,9 @@ import ItemCard from './ItemCard';
 
 
 type HIProps = { items: ItemType[], bgColor: String };
-export default function HorizontalItemSection({ items, bgColor }: HIProps) {
+export default function HorizontalItemSection({ items }: HIProps) {
   return (
-    <section className={`flex justify-between p-10 ${bgColor}`}>
+    <section className='flex justify-between p-10 bg-transparent'>
       {items.map((item) => <ItemCard key={item.id} item={item} />)}
     </section>
   )

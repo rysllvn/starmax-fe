@@ -53,7 +53,7 @@ export default function SignUpPage() {
     return (
         <>
             <h1 className="flex flex-col items-center text-3xl font-bold">Signup Page</h1>
-            <div className="mx-60">
+            <div className="mx-auto">
                 <form className="bg-emerald-300 flex flex-col items-center gap-5 rounded-lg mx-80 my-8 py-10 px-20" onSubmit={handleSubmit}>
                     
                     <input className="bg-emerald-100 border-solid border-2 px-5 py-2 rounded-lg" type ="text"id ="email"name="email" placeholder="Email Address" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" value={email} onChange={(e) => handleEmail(e)}/>

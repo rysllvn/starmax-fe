@@ -33,7 +33,7 @@ export default function FeaturedCarousel({ items }: FeaturedProps) {
   };
 
   return (
-    <div className="flex items-center">
+    <div className="flex items-center shadow-lg shadow-emerald-400">
       <Control onClick={() => handleMove(false)} left={true} />
       <div
         className='flex flex-nowrap overflow-hidden w-96'
@@ -76,7 +76,7 @@ function Item({ item, curr }: ItemProps) {
       }}
     >
       <img
-        src={item.imgUrl ? item.imgUrl : tiebomer}
+        src={item.img_url ? item.img_url : tiebomer}
         alt={item.description}
       />
     </Link>
