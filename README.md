@@ -3,7 +3,7 @@
 ## Description
 
 An online marketplace for all your interstellar travel needs.
-Full stack, React and Spring, project. User signup and signin and full CRUD functionality.
+Full stack, React and Spring, ecommerce project with full CRUD functionality.
 
 ## Tech Stack
 
