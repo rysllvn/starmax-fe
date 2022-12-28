@@ -57,14 +57,17 @@ export default function CheckoutConfirmationPage(){
   return(
       <div>
           <div className="flex flex-col items-center">
-              <h1 className="font-bold text-5xl bg-slate-600 border-t-2 border-l-2 border-r-2 border-slate-500 rounded-t-md px-4 py-2">Cart</h1>
-              <h1 className="font-bold text-4xl bg-slate-600 border-2 border-slate-500 rounded-md px-4 py-2">Total Price: {assignCartTotalPrice()}</h1>
+              <h1 className="font-bold text-5xl bg-slate-600 border-t-2 border-l-2 border-r-2 border-slate-500 rounded-t-md px-4 py-2
+                shadow-xl shadow-emerald-300 cursor-default">
+                    Cart
+            </h1>
+              <h1 className="font-bold text-4xl bg-slate-600 border-2 border-slate-500 rounded-md px-4 py-2 
+                shadow-xl shadow-emerald-300 cursor-default">
+                    Total Price: {assignCartTotalPrice()}
+            </h1>
               <div className="flex space-x-5">
                   <button className="bg-slate-500 text-white text-2xl my-3 font-bold rounded-md px-4 py-2 ease-out hover:scale-125 duration-300 hover:bg-green-500"
                       onClick={checkoutRouter}>Checkout
-                  </button>
-                  <button className="bg-slate-500 text-white text-2xl my-3 font-bold rounded-md px-4 py-2 ease-out hover:scale-125 duration-300 hover:bg-green-500"
-                  onClick={saveCart}> Save Cart
                   </button>
               </div>
           </div>
