@@ -19,7 +19,6 @@ export default function CheckoutConfirmationPage(){
         if(item.currentPrice !== undefined){
           num += item.currentPrice * amount;
         }
-        //num  = num + (item?.current_price ? (item.current_price * amount) : 0);
       });
       return num;
     }

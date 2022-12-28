@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { ItemType } from "../utilities/types";
 
 //SHOW PRICE PER ITEM AND PRICE * AMOUNT
@@ -8,10 +9,15 @@ export default function CartCard(props : {item: ItemType, amount: number, onDele
     const onDelete = props.onDelete;
     const onAmountChange = props.onAmountChange;
 
+    //Necessary for the dropdown menu to properly hide the option which is greater than 10
+    useEffect (() => {
+        updateDropdown();
+    }, [amount])
+
     //Used to update the amount. If amount is 0, removes the item from the cart. THIS WILL NEED TO UTILIZE THE CART REDUCER THING TO UPDATE THE CART AMOUNT ON NAVBAR
     function updateAmount(e : React.ChangeEvent<HTMLSelectElement>){
         const newAmount = Number(e.target.value);
-        if(newAmount == 0){
+        if(newAmount === 0){
             onDelete(item);
         } else{
             onAmountChange(item, newAmount);
@@ -31,6 +37,17 @@ export default function CartCard(props : {item: ItemType, amount: number, onDele
         if(newAmount > 0){
             onAmountChange(item, newAmount);
         }
+
+        updateDropdown();
+    }
+
+    //Used to update the dropdown menu if the amount of an item exceeds 10 (meaning it is no longer an dropdown table option)
+    function updateDropdown(){
+        if(amount < 10){
+            document.getElementById("extra")?.classList.add("hidden");
+        } else {
+            document.getElementById("extra")?.classList.remove("hidden");
+        }
     }
 
     return (
@@ -48,18 +65,18 @@ export default function CartCard(props : {item: ItemType, amount: number, onDele
                 <div className="row-start-6 col-start-1 flex flex-row space-x-5">
                     <h1 className="flex items-center font-bold px-2 cursor-default">QTY: {amount}</h1>
                     <select id="dropDownAmount" className="cursor-pointer bg-inherit border-t-2 border-l-2 border-r-2 rounded-t-lg bg-slate-600" value={amount} onChange={(e) => updateAmount(e)}>
-                        <option value="0">0</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                        <option value="10">10</option>
-                        <option value={amount}>{amount}</option>
+                        <option className = "bg-slate-600" value="0">0</option>
+                        <option className = "bg-slate-600" value="1">1</option>
+                        <option className = "bg-slate-600" value="2">2</option>
+                        <option className = "bg-slate-600" value="3">3</option>
+                        <option className = "bg-slate-600" value="4">4</option>
+                        <option className = "bg-slate-600" value="5">5</option>
+                        <option className = "bg-slate-600" value="6">6</option>
+                        <option className = "bg-slate-600" value="7">7</option>
+                        <option className = "bg-slate-600" value="8">8</option>
+                        <option className = "bg-slate-600" value="9">9</option>
+                        <option className = "bg-slate-600" value="10">10</option>
+                        <option className = "bg-slate-600" id="extra" value={amount}>{amount}</option>
                     </select>
                 </div>
 
