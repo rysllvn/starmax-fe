@@ -32,7 +32,7 @@ export default function CartCard(props : {item: ItemType, amount: number, onDele
     return (
         <div className="flex flex-row mt-10 mb-10 ml-28 mr-28 drop-shadow-xl outline outline-slate-500 rounded-md">
             <div className="flex flex-none h-48 w-48 bg-slate-900 border-r-2 border-r-slate-500">
-                <img src={item.img_url} alt="Veryusefultext"></img>
+                <img src={item.imgUrl} alt="Veryusefultext"></img>
             </div>
             <div className="w-full bg-slate-100 grid grid-cols-4 grid-rows-6">
                 <div className="col-span-4 row-span-2 flex items-center border-b-2">

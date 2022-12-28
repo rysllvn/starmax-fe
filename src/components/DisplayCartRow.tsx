@@ -6,7 +6,7 @@ export default function DisplayCartRow(props : {details: ItemType}){
     return(
         <tr className="border-b border-l bg-slate-100 text-sm">
             <td className="border-r px-2 overflow-hidden whitespace-nowrap max-w-md">
-                <img src={details.img_url} className="object-contain h-12 w-12 mx-auto" />
+                <img src={details.imgUrl} className="object-contain h-12 w-12 mx-auto" />
             </td>
             <td className="border-r px-2 overflow-hidden whitespace-nowrap max-w-md">{details.name}</td>
             <td className="border-r px-2 overflow-hidden whitespace-nowrap max-w-md">amount</td>

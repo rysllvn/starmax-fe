@@ -29,12 +29,12 @@ export default function ItemDetailPage() {
           <div className='text-lg'>{item.description}</div>
           <img
             className='w-96 bg-slate-800 p-8 rounded-xl'
-            src={item.img_url ? item.img_url : tieBomber }
+            src={item.imgUrl ? item.imgUrl : tieBomber }
             alt={`${item.name} ${item.description}`}
           />
           
           <div>MSRP: {item.msrp}</div>
-          <div>Current Price: {item.current_price}</div>
+          <div>Current Price: {item.currentPrice}</div>
           <button
             className={`${cart.has(item) ? 'bg-slate-600 text-white' : 'bg-emerald-600'} rounded-md p-4 w-fit`}
             onClick={handleAddToCart}

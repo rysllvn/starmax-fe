@@ -7,9 +7,9 @@ export default function AdminTableRow({ item }: { item: ItemType }) {
       <td>{item.description}</td>
       <td>{item.type}</td>
       <td>{item.msrp}</td>
-      <td>{item.current_price}</td>
+      <td>{item.currentPrice}</td>
       <td>{item.stock}</td>
-      <td>{item.img_url}</td>
+      <td>{item.imgUrl}</td>
     </tr>
   )
 }

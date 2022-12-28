@@ -12,7 +12,7 @@ export default function ItemCard({ item }: { item: ItemType }) {
     >
       <div className='h-48 w-48'>
         <img
-          src={item.img_url ? item.img_url : tiebomer}
+          src={item.imgUrl ? item.imgUrl : tiebomer}
           alt={item.description}
         />
       </div>

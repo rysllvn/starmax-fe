@@ -76,7 +76,7 @@ function Item({ item, curr }: ItemProps) {
       }}
     >
       <img
-        src={item.img_url ? item.img_url : tiebomer}
+        src={item.imgUrl ? item.imgUrl : tiebomer}
         alt={item.description}
       />
     </Link>

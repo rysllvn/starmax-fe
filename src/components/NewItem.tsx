@@ -9,12 +9,12 @@ export default function NewItem({ onAddItem }: { onAddItem: Function }) {
   const [description, setDescription] = useState('');
   const [stock, setStock] = useState(0);
   const [msrp, setMsrp] = useState(0);
-  const [current_price, setCurrentPrice] = useState(0);
+  const [currentPrice, setCurrentPrice] = useState(0);
   const [type, setType] = useState<ItemTypeT>('Clothing');
 
   function handleAddItem(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    onAddItem({ name, stock, msrp, current_price, type, description });
+    onAddItem({ name, stock, msrp, currentPrice, type, description });
     // reset
     setName('');
     setStock(0);
@@ -27,7 +27,7 @@ export default function NewItem({ onAddItem }: { onAddItem: Function }) {
     if (name.length === 0) return true;
     if (stock <= 0) return true;
     if (msrp <= 0) return true;
-    if (current_price <= 0) return true;
+    if (currentPrice <= 0) return true;
     return false;
   }
 
@@ -70,7 +70,7 @@ export default function NewItem({ onAddItem }: { onAddItem: Function }) {
         <label className='flex justify-between'>Current Price
           <input
             type="number"
-            value={current_price}
+            value={currentPrice}
             onChange={(e) => setCurrentPrice(parseFloat(e.target.value))}
           />
         </label>

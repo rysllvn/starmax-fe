@@ -13,7 +13,7 @@ export default function CheckoutConfirmationPage(){
     function assignCartTotalPrice(){
       let num = 0;
       cart.forEach((amount, item) => {
-        num  = num + (item?.current_price ? (item.current_price * amount) : 0);
+        num  = num + (item?.currentPrice ? (item.currentPrice * amount) : 0);
       });
       return num;
     }
