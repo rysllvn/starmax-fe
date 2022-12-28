@@ -33,7 +33,7 @@ export default function FeaturedCarousel({ items }: FeaturedProps) {
   };
 
   return (
-    <div className="flex items-center shadow-lg shadow-emerald-400">
+    <div className="flex items-center shadow-lg shadow-emerald-400 rounded-lg">
       <Control onClick={() => handleMove(false)} left={true} />
       <div
         className='flex flex-nowrap overflow-hidden w-96'
