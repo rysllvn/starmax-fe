@@ -43,7 +43,7 @@ export default function CartCard(props : {item: ItemType, amount: number, onDele
 
     //Used to update the dropdown menu if the amount of an item exceeds 10 (meaning it is no longer an dropdown table option)
     function updateDropdown(){
-        if(amount < 10){
+        if(amount <= 10){
             document.getElementById("extra")?.classList.add("hidden");
         } else {
             document.getElementById("extra")?.classList.remove("hidden");
