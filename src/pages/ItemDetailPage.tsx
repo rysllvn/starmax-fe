@@ -28,7 +28,7 @@ export default function ItemDetailPage() {
           <h1 className='text-4xl'>{item.name}</h1>
           <div className='text-lg'>{item.description}</div>
           <img
-            className='w-96 bg-slate-300 p-8 rounded-xl'
+            className='w-96 bg-slate-800 p-8 rounded-xl'
             src={item.img_url ? item.img_url : tieBomber }
             alt={`${item.name} ${item.description}`}
           />
@@ -36,7 +36,7 @@ export default function ItemDetailPage() {
           <div>MSRP: {item.msrp}</div>
           <div>Current Price: {item.current_price}</div>
           <button
-            className={`${cart.has(item) ? 'bg-slate-200 text-white' : 'bg-emerald-200'} rounded-md p-4 w-fit`}
+            className={`${cart.has(item) ? 'bg-slate-600 text-white' : 'bg-emerald-600'} rounded-md p-4 w-fit`}
             onClick={handleAddToCart}
             disabled={cart.has(item)}
           >

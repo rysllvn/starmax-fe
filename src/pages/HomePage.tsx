@@ -21,7 +21,7 @@ export default function HomePage() {
               </h1>
               <p>We have everything you need to take on the empire or crush the rebellion</p>
               <Link
-                className='text-xl underline'
+                className='text-xl underline hover:text-amber-300'
                 to="shop"
               >Shop now</Link>
             </div>
@@ -29,7 +29,6 @@ export default function HomePage() {
           </section>
 
           <HorizontalItemSection items={featuredItems.slice(0, 4)} bgColor="bg-emerald-700" />
-          <HorizontalItemSection items={featuredItems.slice(4,8)} bgColor="bg-sky-700" />
         </>
         :
         <div className='text-xl'>Loading...</div>

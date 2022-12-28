@@ -34,10 +34,10 @@ export default function NavigationBar() {
   }
 
   return (
-    <div className='bg-teal-900 text-rose-300 shadow-lg shadow-emerald-300'>
+    <div className='bg-slate-900 text-rose-300 shadow-lg shadow-emerald-300'>
         <nav className="mx-auto container flex justify-between items-center px-10 py-5">
           <Link className='hover:text-white' to="shop">Shop</Link>
-          <Link to="/" className="font-bold text-5xl">Mos Espa Marketplace</Link>
+          <Link to="/" className="font-bold text-5xl">StarMax</Link>
           <div className='flex items-center relative'>
             <UserIcon
               onClick={handleUserClick}
@@ -45,14 +45,15 @@ export default function NavigationBar() {
             />
             {
               userDropdownOpen &&
-              <div className='bg-slate-100 rounded absolute flex flex-col top-10'>
+              <div className='bg-slate-500 rounded absolute flex flex-col top-10 p-2'>
                 <Link
+                  className='hover:text-white'
                   onClick={() => setUserDropdownOpen(false)} 
                   to="/profile"
                 >
                   Profile
                 </Link>
-                <button className='bg-red-500' onClick={handleLogout}>Logout</button>
+                <button className='hover:text-white' onClick={handleLogout}>Logout</button>
               </div>
             }
             <ShoppingCartIcon
