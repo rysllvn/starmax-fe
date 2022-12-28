@@ -1,12 +1,14 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import CartCard from "../components/CartCard";
-import { AppStateContext } from '../utilities/Contexts';
+import { UPDATE_CART_ACTION_TYPE } from "../utilities/constants";
+import { AppStateContext, DispatchContext } from '../utilities/Contexts';
 import { ItemType } from "../utilities/types";
 
   //CONSIDER ADDING A SAVE CHANGES OPTION
 export default function CheckoutConfirmationPage(){
     const applicationState = useContext(AppStateContext);
+    const dispatch = useContext(DispatchContext);
     const cart = applicationState.cart;
     const navigate = useNavigate();
 
@@ -14,9 +16,7 @@ export default function CheckoutConfirmationPage(){
     function assignCartTotalPrice(){
       let num = 0;
       cart.forEach((amount, item) => {
-        console.log(amount);
-        console.log(item.currentPrice);
-        if(item.currentPrice != undefined){
+        if(item.currentPrice !== undefined){
           num += item.currentPrice * amount;
         }
         //num  = num + (item?.current_price ? (item.current_price * amount) : 0);
@@ -26,14 +26,19 @@ export default function CheckoutConfirmationPage(){
 
     //Removes an item from the cart
     function handleDelete(item: ItemType){
-      //Remove the item from the cart using the id.
+      const newCart = new Map(cart);
+      console.log(item);
+      newCart.delete(item);
+      dispatch({ type: UPDATE_CART_ACTION_TYPE, newCart });
     }
 
     //Updates the amount of an item in the cart
-    //THIS CURRENTLY PARTIALLY WORKS. IT WILL UPDATE THE AMOUNT OF THE PAGE RERENDERS SO IT DOES NOT RENDER THE PAGE BY ITSELF
+    //Currently doesn't recognize that a state has changed, so need to manually rerender the page
     function handleAmountChange(item: ItemType, newAmount : number){
       //Update the value (i.e the amount) of items based on the key, which is ItemType
-      cart.set(item, newAmount);
+      const newCart = new Map(cart);
+      newCart.set(item, newAmount);
+      dispatch({ type: UPDATE_CART_ACTION_TYPE, newCart });
     }
 
     //Changes the current page checkout.

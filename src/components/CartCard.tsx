@@ -11,7 +11,11 @@ export default function CartCard(props : {item: ItemType, amount: number, onDele
     //Used to update the amount. If amount is 0, removes the item from the cart. THIS WILL NEED TO UTILIZE THE CART REDUCER THING TO UPDATE THE CART AMOUNT ON NAVBAR
     function updateAmount(e : React.ChangeEvent<HTMLSelectElement>){
         const newAmount = Number(e.target.value);
-        onAmountChange(item, newAmount);
+        if(newAmount == 0){
+            onDelete(item);
+        } else{
+            onAmountChange(item, newAmount);
+        }
     }
 
     //Used to add a custom amount. This cannot be used to remove items from the checkout
@@ -68,7 +72,7 @@ export default function CartCard(props : {item: ItemType, amount: number, onDele
                 </div>
 
                 <div className="row-start-6 col-start-4 flex items-center flex-row-reverse px-2">
-                    <button onClick={() => onDelete(item.id)} className="rounded-md px-2 bg-slate-500 hover:bg-red-500 text-white">Remove Item</button>
+                    <button onClick={() => onDelete(item)} className="rounded-md px-2 bg-slate-500 hover:bg-red-500 text-white">Remove Item</button>
                 </div>
             </div> 
         </div>
