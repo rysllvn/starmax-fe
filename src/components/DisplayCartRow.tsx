@@ -4,7 +4,7 @@ import { cartItemType, ItemType } from "../utilities/types";
 export default function DisplayCartRow(props : {details: ItemType}){
     const details = props.details;
     return(
-        <tr className="border-b border-l bg-slate-100 text-sm">
+        <tr className="border-b border-l bg-slate-400 text-sm">
             <td className="border-r px-2 overflow-hidden whitespace-nowrap max-w-md">
                 <img src={details.img_url} className="object-contain h-12 w-12 mx-auto" />
             </td>
