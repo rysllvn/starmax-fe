@@ -13,7 +13,6 @@ function App() {
   //  see AppReducer.ts for information
   ****************************************************************/
   const [state, dispatch] = useReducer(reducer, initialState);
-
   useEffect(() => {
     eCommerce_API.get('/items/all')
     .then((response) => {

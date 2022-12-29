@@ -25,3 +25,5 @@ jobs:
           aws-region: us-west-1
       - name: Deploy to S3
         run: aws s3 sync ./build/. s3://starmax-fe
+      - name: Invalidate Cloudfront cache
+        run: aws cloudfront create-invalidation --distribution-id E3AUUSJ4D6RP6X --paths '/*'
