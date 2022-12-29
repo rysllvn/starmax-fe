@@ -5,7 +5,7 @@ export default function AdminTableRow({ item }: { item: ItemType }) {
     <tr>
       <td>{item.name}</td>
       <td>{item.description}</td>
-      <td>{item.type}</td>
+      <td>{item.itemType}</td>
       <td>{item.msrp}</td>
       <td>{item.currentPrice}</td>
       <td>{item.stock}</td>

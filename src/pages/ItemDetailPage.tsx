@@ -21,14 +21,14 @@ export default function ItemDetailPage() {
   }
 
   return (
-    <>
+    <div className='bg-slate-900 p-5 rounded-lg'>
       {
         item ?
         <div className='flex flex-col items-center gap-4'>
           <h1 className='text-4xl'>{item.name}</h1>
           <div className='text-lg'>{item.description}</div>
           <img
-            className='w-96 bg-slate-800 p-8 rounded-xl'
+            className='w-3/4 bg-slate-600 p-1 rounded-xl'
             src={item.imgUrl ? item.imgUrl : tieBomber }
             alt={`${item.name} ${item.description}`}
           />
@@ -48,6 +48,6 @@ export default function ItemDetailPage() {
       :
         <div>Loading...</div>
       }
-    </>
+    </div>
   )
 }

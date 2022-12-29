@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { ItemTypeT } from '../utilities/types';
 
 const options = ['Clothing', 'Vehicles', 'Electronics'];
 
@@ -10,7 +9,7 @@ export default function NewItem({ onAddItem }: { onAddItem: Function }) {
   const [stock, setStock] = useState(0);
   const [msrp, setMsrp] = useState(0);
   const [currentPrice, setCurrentPrice] = useState(0);
-  const [type, setType] = useState<ItemTypeT>('Clothing');
+  const [type, setType] = useState<string>('Clothing');
 
   function handleAddItem(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -77,7 +76,7 @@ export default function NewItem({ onAddItem }: { onAddItem: Function }) {
         <label className='flex justify-between'>Type
           <select
             value={type}
-            onChange={e => setType(e.target.value as ItemTypeT)}
+            onChange={e => setType(e.target.value)}
           >
             {options.map(option => <option key={option} value={option}>{option}</option>)}
           </select>

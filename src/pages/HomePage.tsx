@@ -19,9 +19,9 @@ export default function HomePage() {
               <h1 className='text-3xl'>
                 From x-wings to star destroyers
               </h1>
-              <p>We have everything you need to take on the empire or crush the rebellion</p>
+              <p className='text-3xl'>Buy everything you need to take on the empire or crush the rebellion</p>
               <Link
-                className='text-xl underline hover:text-amber-300'
+                className='text-3xl underline hover:text-amber-300'
                 to="shop"
               >Shop now</Link>
             </div>

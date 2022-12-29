@@ -34,8 +34,6 @@ export type AddressType = {
   zip: string;
 };
 
-export type ItemTypeT = 'Clothing' | 'Vehicles' | 'Electronics';
-
 export type ItemType = {
   id?: string;
   name?: string;
@@ -45,7 +43,7 @@ export type ItemType = {
   imgUrl?: string;
   currentPrice?: number;
   current_price?: number;
-  type?: ItemTypeT;
+  itemType: string;
   img_url?: string;
 };
 
