@@ -13,9 +13,9 @@ function App() {
   //  see AppReducer.ts for information
   ****************************************************************/
   const [state, dispatch] = useReducer(reducer, initialState);
-
   useEffect(() => {
-    eCommerce_API.get('/items/all')
+    const config: any = { crossdomain: true };
+    eCommerce_API.get('/items/all', config)
     .then((response) => {
       dispatch({ type: UPDATE_ITEMS, items: response.data });
     });
