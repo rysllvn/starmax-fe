@@ -26,7 +26,6 @@ export default function CheckoutConfirmationPage(){
     //Removes an item from the cart
     function handleDelete(item: ItemType){
       const newCart = new Map(cart);
-      console.log(item);
       newCart.delete(item);
       dispatch({ type: UPDATE_CART_ACTION_TYPE, newCart });
     }
@@ -50,7 +49,6 @@ export default function CheckoutConfirmationPage(){
     //Used to save the user cart by making post request to the database
     function saveCart(){
       //CURRENTLY DOES NOTHING. NEED TO WAIT ON BACKEND IMPLEMENTATION
-      console.log("saving cart");
     }
   
   //Check whether the cart is loaded

@@ -1,4 +1,4 @@
-import { AddressType } from '../utilities/types'
+import { AddressType } from '../../utilities/types'
 
 type Props = {
   addresses: AddressType[]

@@ -5,8 +5,8 @@ import {
   useState,
 } from 'react';
 
-import eCommerce_API from "../utilities/ApiConfig";
-import { AppStateContext } from "../utilities/Contexts";
+import eCommerce_API from "../../utilities/ApiConfig";
+import { AppStateContext } from "../../utilities/Contexts";
 
 export default function UpdateUserForm() {
   //user data for changing credintials 

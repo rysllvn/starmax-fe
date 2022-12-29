@@ -16,7 +16,6 @@ function App() {
   useEffect(() => {
     eCommerce_API.get('/items/all')
     .then((response) => {
-      console.log(response.data)
       dispatch({ type: UPDATE_ITEMS, items: response.data });
     });
   }, [dispatch])

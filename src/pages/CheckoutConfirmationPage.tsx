@@ -2,7 +2,6 @@
 export default function CheckoutConfirmationPage(){
 
     function submitInformation(){
-        console.log("Submitted");
         //Somehow push the cart to the database. Will need to clear the current cart after.
     }
 

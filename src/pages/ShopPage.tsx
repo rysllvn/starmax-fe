@@ -8,6 +8,7 @@ export default function ShopPage() {
 
   const itemTypeSet = new Set<string>();
   items.forEach(item => itemTypeSet.add(item.itemType));
+  const typeArray = Array.from(itemTypeSet);
 
   function handleFilter(index: number) {
     setFilterIndex(index === filterIndex ? -1 : index);
@@ -20,10 +21,13 @@ export default function ShopPage() {
     {
       itemsLoaded ?
       <>
-        <TypeFilter types={Array.from(itemTypeSet)} active={filterIndex} onClick={handleFilter} />
-        <div className='flex w-5/6 flex-wrap gap-10 mt-5'>
+        <TypeFilter types={typeArray} active={filterIndex} onClick={handleFilter} />
+        <div className='flex flex-wrap gap-10 mt-5'>
         {
-          Array.from(items.values()).map((item) => <ItemCard key={item.id} item={item} />)
+          Array.from(items.values())
+          .filter((item) => {
+            return filterIndex === -1 || item.itemType === typeArray[filterIndex]
+          }).map((item) => <ItemCard key={item.id} item={item} />)
         }
         </div>
       </>
