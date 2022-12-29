@@ -34,7 +34,7 @@ export default function NavigationBar() {
   }
 
   return (
-    <div className='bg-slate-900 text-rose-300 shadow-lg shadow-emerald-300'>
+    <div className='bg-slate-900 text-rose-300 shadow-md shadow-emerald-700'>
         <nav className="mx-auto container flex justify-between items-center px-10 py-5">
           <Link className='hover:text-white' to="shop">Shop</Link>
           <Link to="/" className="font-bold text-5xl">StarMax</Link>

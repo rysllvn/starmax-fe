@@ -26,7 +26,8 @@ export default function LoginPage() {
         event.preventDefault();
        await eCommerce_API.post("/auth",{
             "email": email,
-            "password":password     
+            "password":password,
+              
         }).then((resp) => {
             const userData = resp.data;
             localStorage.setItem(USER_DATA_KEY, JSON.stringify(userData));
@@ -40,14 +41,14 @@ export default function LoginPage() {
       <>
         <h1 className="flex flex-col items-center text-3xl font-bold">Login Page</h1>
         <div className="mx-auto">
-            <form className="bg-emerald-300 flex flex-col items-center gap-5 rounded-lg mx-80 my-8 py-5 px-10" onSubmit={handleSubmit}>
-               <input className="bg-emerald-100 border-solid border-2 px-5 py-2 rounded-lg" type ="text"id ="email"name="email" placeholder="Email Address" value={email} onChange={(e) => handleEmail(e)}/>
-               <input className="bg-emerald-100 border-solid border-2 px-5 py-2 rounded-lg" type ="password"id ="password"name="password" placeholder="Password" value={password} onChange={(e) => handlePassword(e)}/>
+            <form className="bg-sky-800 flex flex-col items-center gap-5 rounded-lg mx-80 my-8 py-5 px-10" onSubmit={handleSubmit}>
+               <input className="placeholder-gray-900 bg-sky-600 px-5 py-2 rounded-lg" type ="text"id ="email"name="email" placeholder="Email Address" value={email} onChange={(e) => handleEmail(e)}/>
+               <input className="placeholder-gray-900 bg-sky-600 px-5 py-2 rounded-lg" type ="password"id ="password"name="password" placeholder="Password" value={password} onChange={(e) => handlePassword(e)}/>
                
                {error ? <p className="text-red-600">{error}</p>:null}            
                
                <button className="bg-slate-800 rounded-md text-white mt-2 px-5 py-2 ease-out duration-300 hover:scale-125">LOGIN</button>
-               <Link to={"/signup"} className="text-blue-700 underline">Create new account</Link>
+               <Link to={"/signup"} className="text-slate-300 hover:text-slate-200 underline">Create new account</Link>
             </form>
           </div>
         </>
