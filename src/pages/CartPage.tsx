@@ -45,11 +45,6 @@ export default function CheckoutConfirmationPage(){
       //Make a POST request to update the user cart in database.
       navigate(checkoutPath);
     }
-
-    //Used to save the user cart by making post request to the database
-    function saveCart(){
-      //CURRENTLY DOES NOTHING. NEED TO WAIT ON BACKEND IMPLEMENTATION
-    }
   
   //Check whether the cart is loaded
   return(

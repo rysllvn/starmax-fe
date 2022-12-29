@@ -11,7 +11,7 @@ export default function CartCard(props : {item: ItemType, amount: number, onDele
 
     //Necessary for the dropdown menu to properly hide the option which is greater than 10
     useEffect (() => {
-        updateDropdown();
+        // updateDropdown();
     }, [amount])
 
     //Used to update the amount. If amount is 0, removes the item from the cart. THIS WILL NEED TO UTILIZE THE CART REDUCER THING TO UPDATE THE CART AMOUNT ON NAVBAR
