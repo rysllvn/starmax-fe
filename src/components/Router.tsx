@@ -39,8 +39,6 @@ export default function Router() {
       <Route path="/admin" element={<AdminLayout />}>
         <Route element={<RequireAuth role="Admin" />} >
           <Route path="inventory" element={<AdminInventoryPage />} />
-        </Route>
-        <Route element={<RequireAuth role="Admin" />} >
           <Route path="orders" element={<ManageOrdersPage />} />
         </Route>
       </Route>

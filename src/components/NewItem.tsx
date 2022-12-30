@@ -31,29 +31,30 @@ export default function NewItem({ onAddItem }: { onAddItem: Function }) {
   }
 
   return (
-    <div className='mt-8'>
-      <h2>Add New Item</h2>
+    <div className='mt-8 border-solid border-slate-900 rounded border-4 max-w-fit p-4'>
+      <h2 className='text-3xl mb-3'>Add New Item</h2>
       <form
-        className='flex flex-col max-w-2xl mx-auto gap-4'
+        className='flex flex-col max-w-2xl gap-4'
         onSubmit={handleAddItem}
       >
         <label className='flex justify-between'>Name: 
           <input
-            className='w-full'
+            className='w-full bg-slate-600'
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
         </label>
-        <label className='flex justify-between'>Description
+        <label className='flex justify-between p-4'>Description
           <textarea
-            className='w-full'
+            className='w-full bg-slate-600'
             onChange={(e) => setDescription(e.target.value)}
             value={description}
           />
         </label>
-        <label className='flex justify-between'>Stock
+        <label className='flex justify-between px-4'>Stock
           <input
+            className='bg-slate-600 p-4'
             type="number"
             value={stock}
             onChange={(e) => setStock(parseFloat(e.target.value))}
@@ -61,6 +62,7 @@ export default function NewItem({ onAddItem }: { onAddItem: Function }) {
         </label>
         <label className='flex justify-between'>MSRP 
           <input
+            className='bg-slate-600 p-4'
             type="number"
             value={msrp}
             onChange={(e) => setMsrp(parseFloat(e.target.value))}
@@ -68,6 +70,7 @@ export default function NewItem({ onAddItem }: { onAddItem: Function }) {
         </label>
         <label className='flex justify-between'>Current Price
           <input
+            className='bg-slate-600 p-4'
             type="number"
             value={currentPrice}
             onChange={(e) => setCurrentPrice(parseFloat(e.target.value))}
@@ -75,10 +78,11 @@ export default function NewItem({ onAddItem }: { onAddItem: Function }) {
         </label>
         <label className='flex justify-between'>Type
           <select
+            className='bg-slate-600 p-4'
             value={type}
             onChange={e => setType(e.target.value)}
           >
-            {options.map(option => <option key={option} value={option}>{option}</option>)}
+            {options.map(option => <option className='bg-slate-600 p-4' key={option} value={option}>{option}</option>)}
           </select>
         </label>
         

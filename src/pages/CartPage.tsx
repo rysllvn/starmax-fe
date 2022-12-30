@@ -1,5 +1,4 @@
 import { useContext } from "react";
-import { useNavigate } from "react-router-dom";
 import CartCard from "../components/CartCard";
 import { UPDATE_CART_ACTION_TYPE } from "../utilities/constants";
 import { AppStateContext, DispatchContext } from '../utilities/Contexts';
@@ -10,7 +9,6 @@ export default function CheckoutConfirmationPage(){
     const applicationState = useContext(AppStateContext);
     const dispatch = useContext(DispatchContext);
     const cart = applicationState.cart;
-    const navigate = useNavigate();
 
     //Updates cart total price
     function assignCartTotalPrice(){
@@ -41,9 +39,9 @@ export default function CheckoutConfirmationPage(){
 
     //Changes the current page checkout.
     function checkoutRouter(){
-      const checkoutPath = "/cart/confirmation";
       //Make a POST request to update the user cart in database.
-      navigate(checkoutPath);
+      alert('order placed');
+      dispatch({ type: UPDATE_CART_ACTION_TYPE, cart: [] })
     }
   
   //Check whether the cart is loaded

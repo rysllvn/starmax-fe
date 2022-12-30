@@ -7,7 +7,7 @@ export default function AdminLayout() {
         <NavLink to="inventory">INVENTORY</NavLink>
         <NavLink to="orders">ORDERS</NavLink>
       </nav>
-      <main className="h-full pb-10 pt-7 container mx-auto bg-slate-50 p-8">
+      <main className="h-full pb-10 pt-7 container mx-auto bg-slate-700 p-8">
         <Outlet />
       </main>
     </>

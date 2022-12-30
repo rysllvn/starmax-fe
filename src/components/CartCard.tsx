@@ -61,7 +61,7 @@ export default function CartCard(props : {item: ItemType, amount: number, onDele
                     <h1 className="text-lg font-bold break-all px-2 cursor-default">{item.name}</h1>
                 </div>
                 <div className="col-span-2 flex items-center">
-                    <h1 className="font-bold truncate px-2 cursor-default">ID: {item.id}</h1>
+                    <h1 className="font-bold truncate px-2 cursor-default">${item.currentPrice}</h1>
                 </div>
                 <div className="row-start-6 col-start-1 flex flex-row space-x-5">
                     <h1 className="flex items-center font-bold px-2 cursor-default">QTY: {amount}</h1>

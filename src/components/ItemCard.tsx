@@ -17,9 +17,9 @@ export default function ItemCard({ item }: { item: ItemType }) {
         />
       </div>
       <div className='text-blue-100'>{item.name}</div>
-      <div className={item.msrp !== item.currentPrice ? 'line-through decoration-red-500 decoration-2' : undefined}>{item.msrp}</div>
+      <div className={item.msrp !== item.currentPrice ? 'line-through decoration-red-500 decoration-2' : undefined}>${item.msrp}</div>
       {
-        item.msrp !== item.currentPrice && <div>{item.currentPrice}</div>
+        item.msrp !== item.currentPrice && <div>${item.currentPrice}</div>
       }
     </div>
   )
