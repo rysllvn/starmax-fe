@@ -41,7 +41,7 @@ export default function CheckoutConfirmationPage(){
     function checkoutRouter(){
       //Make a POST request to update the user cart in database.
       alert('order placed');
-      dispatch({ type: UPDATE_CART_ACTION_TYPE, cart: [] })
+      dispatch({ type: UPDATE_CART_ACTION_TYPE, cart: new Map() })
     }
   
   //Check whether the cart is loaded
