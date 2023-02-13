@@ -1,7 +1,5 @@
 # StarMax
 
-[Live Site](http://starmax-fe.s3-website-us-west-1.amazonaws.com/)
-
 ## Description
 
 An online marketplace for all your interstellar travel needs.
